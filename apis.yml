@@ -1,0 +1,7 @@
+aid: agilent-technologies
+url: https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/apis.yml
+modified: '2026-03-23'
+apis: []
+common:
+  - type: Website
+    url: https://www.agilent-technologies.com
