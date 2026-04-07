@@ -1,7 +1,12 @@
 aid: agilent-technologies
-url: https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/apis.yml
 modified: '2026-03-23'
 apis: []
 common:
   - type: Website
     url: https://www.agilent-technologies.com
+description: >-
+  Agilent Technologies is a global leader in life sciences, diagnostics, and applied
+  chemical markets, providing instruments, software, services, and consumables for
+  laboratory workflows.
