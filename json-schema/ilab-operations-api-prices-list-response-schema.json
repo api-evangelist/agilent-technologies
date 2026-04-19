@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-schema/ilab-operations-api-prices-list-response-schema.json",
+  "title": "Prices List Response",
+  "description": "List of prices for a service.",
+  "type": "object",
+  "properties": {
+    "prices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Price"
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-project-structure.json",
+  "name": "Project",
+  "description": "A research project or cost account.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "Unique identifier for the project.",
+      "example": 987
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the research project.",
+      "example": "Cancer Genomics Study 2026"
+    },
+    "pi_name": {
+      "type": "string",
+      "description": "Name of the principal investigator.",
+      "example": "Jane Smith"
+    },
+    "account_number": {
+      "type": "string",
+      "description": "Financial account number for billing.",
+      "example": "1234-5678"
+    },
+    "status": {
+      "type": "string",
+      "description": "Project status.",
+      "enum": [
+        "active",
+        "closed"
+      ],
+      "example": "active"
+    }
+  }
+}

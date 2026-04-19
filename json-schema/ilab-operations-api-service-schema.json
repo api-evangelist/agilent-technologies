@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-schema/ilab-operations-api-service-schema.json",
+  "title": "Service",
+  "description": "A service offered by a core facility.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the service.",
+      "example": 493801
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the service.",
+      "example": "RNA Sequencing"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the service.",
+      "example": "Transcriptome sequencing service"
+    },
+    "status": {
+      "type": "string",
+      "description": "Availability status of the service.",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "example": "active"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "API URL for this service resource.",
+      "example": "https://api.ilabsolutions.com/v1/cores/5582/services/493801"
+    }
+  }
+}

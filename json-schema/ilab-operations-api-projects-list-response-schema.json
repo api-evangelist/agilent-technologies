@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-schema/ilab-operations-api-projects-list-response-schema.json",
+  "title": "Projects List Response",
+  "description": "List of research projects for a core facility.",
+  "type": "object",
+  "properties": {
+    "projects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Project"
+      }
+    }
+  }
+}

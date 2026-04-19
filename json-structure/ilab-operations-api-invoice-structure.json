@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-invoice-structure.json",
+  "name": "Invoice",
+  "description": "A billing invoice from a core facility.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "Unique identifier for the invoice.",
+      "example": 300789
+    },
+    "period": {
+      "type": "string",
+      "description": "Billing period (YYYY-MM format).",
+      "example": "2026-03"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current invoice status.",
+      "enum": [
+        "draft",
+        "sent",
+        "paid",
+        "voided"
+      ],
+      "example": "sent"
+    },
+    "total_amount": {
+      "type": "double",
+      "description": "Total invoice amount.",
+      "example": 2500.0
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (ISO 4217).",
+      "example": "USD"
+    },
+    "issued_at": {
+      "type": "datetime",
+      "description": "Timestamp when the invoice was issued.",
+      "example": "2026-04-01T00:00:00Z"
+    }
+  }
+}

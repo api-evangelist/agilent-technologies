@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-services-list-response-structure.json",
+  "name": "Services List Response",
+  "description": "List of services for a core facility.",
+  "type": "object",
+  "properties": {
+    "services": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Service"
+      }
+    }
+  }
+}

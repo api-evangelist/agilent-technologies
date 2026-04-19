@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-members-list-response-structure.json",
+  "name": "Members List Response",
+  "description": "List of members for a core facility.",
+  "type": "object",
+  "properties": {
+    "members": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Member"
+      }
+    }
+  }
+}

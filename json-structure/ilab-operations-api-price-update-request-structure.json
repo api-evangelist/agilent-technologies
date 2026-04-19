@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-price-update-request-structure.json",
+  "name": "Price Update Request",
+  "description": "Request body for updating a service price.",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "double",
+      "description": "New price amount.",
+      "example": 175.0
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (ISO 4217).",
+      "example": "USD"
+    }
+  },
+  "required": [
+    "amount"
+  ]
+}

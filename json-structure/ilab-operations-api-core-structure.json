@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-core-structure.json",
+  "name": "Core",
+  "description": "A core facility within an institution.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "Unique identifier for the core facility.",
+      "example": 5582
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the core facility.",
+      "example": "Genomics Core Facility"
+    },
+    "institution": {
+      "type": "string",
+      "description": "Name of the institution operating the core.",
+      "example": "Stanford University"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the core facility's capabilities.",
+      "example": "High-throughput genomics and sequencing services"
+    },
+    "status": {
+      "type": "string",
+      "description": "Operational status of the core.",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "example": "active"
+    },
+    "contact_email": {
+      "type": "string",
+      "description": "Contact email for the core facility.",
+      "example": "genomics-core@stanford.edu"
+    },
+    "url": {
+      "type": "uri",
+      "description": "API URL for this core resource.",
+      "example": "https://api.ilabsolutions.com/v1/cores/5582"
+    }
+  }
+}

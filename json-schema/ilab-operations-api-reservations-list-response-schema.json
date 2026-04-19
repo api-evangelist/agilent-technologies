@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-schema/ilab-operations-api-reservations-list-response-schema.json",
+  "title": "Reservations List Response",
+  "description": "List of reservations for a core facility.",
+  "type": "object",
+  "properties": {
+    "reservations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Reservation"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-invoices-list-response-structure.json",
+  "name": "Invoices List Response",
+  "description": "List of invoices for a core facility.",
+  "type": "object",
+  "properties": {
+    "invoices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Invoice"
+      }
+    }
+  }
+}

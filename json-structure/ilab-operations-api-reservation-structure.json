@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-reservation-structure.json",
+  "name": "Reservation",
+  "description": "An equipment reservation at a core facility.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "Unique identifier for the reservation.",
+      "example": 200456
+    },
+    "equipment_name": {
+      "type": "string",
+      "description": "Name of the reserved equipment.",
+      "example": "Illumina NovaSeq 6000"
+    },
+    "start_time": {
+      "type": "datetime",
+      "description": "Reservation start time (ISO 8601).",
+      "example": "2026-04-20T09:00:00Z"
+    },
+    "end_time": {
+      "type": "datetime",
+      "description": "Reservation end time (ISO 8601).",
+      "example": "2026-04-20T17:00:00Z"
+    },
+    "user": {
+      "type": "string",
+      "description": "Username of the person who made the reservation.",
+      "example": "jsmith"
+    }
+  }
+}

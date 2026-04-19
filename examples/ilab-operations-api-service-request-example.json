@@ -1,0 +1,10 @@
+{
+  "id": 100123,
+  "service_id": 493801,
+  "project_id": 987,
+  "status": "submitted",
+  "quantity": 5,
+  "notes": "RNA sequencing for experiment batch 12",
+  "submitted_at": "2025-03-15T14:30:00Z",
+  "principal_investigator": "Jane Smith"
+}

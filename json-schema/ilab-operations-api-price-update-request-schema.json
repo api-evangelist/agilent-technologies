@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-schema/ilab-operations-api-price-update-request-schema.json",
+  "title": "Price Update Request",
+  "description": "Request body for updating a service price.",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number",
+      "format": "double",
+      "description": "New price amount.",
+      "example": 175.0
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (ISO 4217).",
+      "example": "USD"
+    }
+  },
+  "required": [
+    "amount"
+  ]
+}

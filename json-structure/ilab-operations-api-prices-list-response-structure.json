@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-prices-list-response-structure.json",
+  "name": "Prices List Response",
+  "description": "List of prices for a service.",
+  "type": "object",
+  "properties": {
+    "prices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Price"
+      }
+    }
+  }
+}

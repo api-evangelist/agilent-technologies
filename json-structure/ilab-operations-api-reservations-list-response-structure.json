@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-reservations-list-response-structure.json",
+  "name": "Reservations List Response",
+  "description": "List of reservations for a core facility.",
+  "type": "object",
+  "properties": {
+    "reservations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Reservation"
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "cores": [
+    "example-cores"
+  ],
+  "total": 42,
+  "page": 1,
+  "per_page": 25
+}

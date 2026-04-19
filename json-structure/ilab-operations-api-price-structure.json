@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-price-structure.json",
+  "name": "Price",
+  "description": "A pricing tier for a service.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "Unique identifier for this price record.",
+      "example": 66
+    },
+    "member_type": {
+      "type": "string",
+      "description": "Member type this price applies to (internal, external, collaborator).",
+      "enum": [
+        "internal",
+        "external",
+        "collaborator"
+      ],
+      "example": "internal"
+    },
+    "amount": {
+      "type": "double",
+      "description": "Price amount.",
+      "example": 150.0
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code (ISO 4217).",
+      "example": "USD"
+    },
+    "unit": {
+      "type": "string",
+      "description": "Unit of measurement for the price.",
+      "example": "per_sample"
+    }
+  }
+}

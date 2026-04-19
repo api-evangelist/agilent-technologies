@@ -1,0 +1,292 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Agilent Technologies
+  description: >-
+    Unified vocabulary for Agilent Technologies APIs covering laboratory operations,
+    core facility management, billing, scheduling, and instrument management.
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - name: iLab Operations API
+      namespace: ilab
+      version: v1
+      baseUrl: https://api.ilabsolutions.com/v1
+      status: active
+    - name: SLIMS REST API
+      namespace: slims
+      version: "6.9"
+      baseUrl: https://your-slims-instance/rest
+      status: active
+    - name: CrossLab Asset Manager API
+      namespace: crosslab
+      version: v1
+      baseUrl: https://crosslab-api.agilent.com
+      status: active
+    - name: VWorks Automation API
+      namespace: vworks
+      version: "14.0"
+      baseUrl: https://www.agilent.com
+      status: active
+
+  resources:
+    - name: cores
+      description: Core facility resources — root resource of the iLab API
+      api: ilab
+      actions:
+        - list
+        - get
+    - name: services
+      description: Services offered by core facilities including pricing tiers
+      api: ilab
+      actions:
+        - list
+        - get
+        - update
+    - name: service-requests
+      description: Service request submissions and lifecycle management
+      api: ilab
+      actions:
+        - list
+        - create
+    - name: reservations
+      description: Equipment reservation scheduling
+      api: ilab
+      actions:
+        - list
+    - name: invoices
+      description: Billing invoices and financial records
+      api: ilab
+      actions:
+        - list
+    - name: members
+      description: Core facility membership and user management
+      api: ilab
+      actions:
+        - list
+    - name: projects
+      description: Research projects and cost accounts
+      api: ilab
+      actions:
+        - list
+
+  actions:
+    - name: list
+      description: Retrieve a collection of resources
+      httpMethod: GET
+      pattern: read
+    - name: get
+      description: Retrieve a single resource by identifier
+      httpMethod: GET
+      pattern: read
+    - name: create
+      description: Submit or create a new resource
+      httpMethod: POST
+      pattern: write
+    - name: update
+      description: Update an existing resource
+      httpMethod: PUT
+      pattern: write
+
+  schemas:
+    core:
+      - Core
+      - Service
+      - Price
+      - ServiceRequest
+      - Reservation
+      - Invoice
+      - Member
+      - Project
+    responses:
+      - CoresListResponse
+      - ServicesListResponse
+      - PricesListResponse
+      - ServiceRequestsListResponse
+      - ReservationsListResponse
+      - InvoicesListResponse
+      - MembersListResponse
+      - ProjectsListResponse
+    errors:
+      - ErrorResponse
+
+  parameters:
+    pagination:
+      - name: page
+        description: Page number for paginated results
+      - name: per_page
+        description: Number of items per page
+    identifiers:
+      - name: core_id
+        description: Unique identifier for a core facility
+      - name: service_id
+        description: Unique identifier for a service
+      - name: price_id
+        description: Unique identifier for a price record
+    filters:
+      - name: status
+        description: Filter resources by status
+      - name: institution_id
+        description: Filter by institution identifier
+      - name: start_date
+        description: Start date for date-range queries
+      - name: end_date
+        description: End date for date-range queries
+
+  enums:
+    status:
+      - active
+      - inactive
+    service_request_status:
+      - submitted
+      - processing
+      - completed
+      - cancelled
+    invoice_status:
+      - draft
+      - sent
+      - paid
+      - voided
+    member_role:
+      - pi
+      - researcher
+      - admin
+      - staff
+    member_type:
+      - internal
+      - external
+      - collaborator
+
+  authentication:
+    schemes:
+      - name: BearerAuth
+        type: bearer
+        description: API token from iLab Administration > API Clients
+        apis:
+          - ilab
+
+capability:
+  workflows:
+    - name: Laboratory Operations
+      file: capabilities/laboratory-operations.yaml
+      description: Core facility management for billing, scheduling, service requests, and reporting
+      apis:
+        - iLab Operations API
+      toolCount: 11
+      personas:
+        - Core Facility Manager
+        - Research Administrator
+        - Principal Investigator
+
+  personas:
+    - id: core-facility-manager
+      name: Core Facility Manager
+      description: Manages core facility operations, pricing, scheduling, and billing
+      workflows:
+        - Laboratory Operations
+    - id: research-administrator
+      name: Research Administrator
+      description: Handles financial reporting, billing, and project cost management
+      workflows:
+        - Laboratory Operations
+    - id: principal-investigator
+      name: Principal Investigator
+      description: Submits service requests and monitors project billing
+      workflows:
+        - Laboratory Operations
+
+  domains:
+    - name: Core Facility Management
+      description: Management of shared research instrumentation and services
+      resources:
+        - cores
+        - services
+        - members
+    - name: Billing and Finance
+      description: Financial tracking, invoicing, and cost account management
+      resources:
+        - invoices
+        - projects
+        - services
+    - name: Service Fulfillment
+      description: Service request submission and fulfillment tracking
+      resources:
+        - service-requests
+    - name: Equipment Scheduling
+      description: Instrument reservation and scheduling management
+      resources:
+        - reservations
+
+  namespaces:
+    consumed:
+      - name: ilab
+        type: http
+        baseUri: https://api.ilabsolutions.com/v1
+    exposed:
+      - name: lab-operations-api
+        type: rest
+        port: 8080
+      - name: lab-operations-mcp
+        type: mcp
+        port: 9090
+
+  binds:
+    - name: ILAB_API_TOKEN
+      description: iLab API bearer token from Administration > API Clients
+      workflows:
+        - Laboratory Operations
+
+crossReference:
+  - resource: cores
+    operations:
+      - list-cores
+      - get-core
+    workflows:
+      - Laboratory Operations
+    personas:
+      - Core Facility Manager
+      - Research Administrator
+  - resource: services
+    operations:
+      - list-services
+      - list-service-prices
+      - update-service-price
+    workflows:
+      - Laboratory Operations
+    personas:
+      - Core Facility Manager
+  - resource: service-requests
+    operations:
+      - list-service-requests
+      - create-service-request
+    workflows:
+      - Laboratory Operations
+    personas:
+      - Principal Investigator
+      - Core Facility Manager
+  - resource: reservations
+    operations:
+      - list-reservations
+    workflows:
+      - Laboratory Operations
+    personas:
+      - Principal Investigator
+      - Core Facility Manager
+  - resource: invoices
+    operations:
+      - list-invoices
+    workflows:
+      - Laboratory Operations
+    personas:
+      - Research Administrator
+      - Core Facility Manager
+  - resource: projects
+    operations:
+      - list-projects
+    workflows:
+      - Laboratory Operations
+    personas:
+      - Principal Investigator
+      - Research Administrator

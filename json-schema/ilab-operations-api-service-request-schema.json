@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-schema/ilab-operations-api-service-request-schema.json",
+  "title": "Service Request",
+  "description": "A service request submitted to a core facility.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the service request.",
+      "example": 100123
+    },
+    "service_id": {
+      "type": "integer",
+      "description": "Identifier of the service being requested.",
+      "example": 493801
+    },
+    "project_id": {
+      "type": "integer",
+      "description": "Identifier of the research project to bill.",
+      "example": 987
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the service request.",
+      "enum": [
+        "submitted",
+        "processing",
+        "completed",
+        "cancelled"
+      ],
+      "example": "submitted"
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "Number of units requested.",
+      "example": 5
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes or instructions for the core.",
+      "example": "RNA sequencing for experiment batch 12"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the request was submitted.",
+      "example": "2025-03-15T14:30:00Z"
+    },
+    "principal_investigator": {
+      "type": "string",
+      "description": "Name of the principal investigator.",
+      "example": "Jane Smith"
+    }
+  }
+}

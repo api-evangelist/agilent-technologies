@@ -1,0 +1,188 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "agilent": "https://agilent.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Price Update Request": "agilent:Price Update Request",
+    "amount": {
+      "@id": "agilent:amount",
+      "@type": "xsd:double"
+    },
+    "currency": {
+      "@id": "agilent:currency",
+      "@type": "xsd:string"
+    },
+    "Service Requests List Response": "agilent:Service Requests List Response",
+    "serviceRequests": {
+      "@id": "agilent:service_requests",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Service Request Create Request": "agilent:Service Request Create Request",
+    "serviceId": {
+      "@id": "agilent:service_id",
+      "@type": "xsd:integer"
+    },
+    "projectId": {
+      "@id": "agilent:project_id",
+      "@type": "xsd:integer"
+    },
+    "quantity": {
+      "@id": "agilent:quantity",
+      "@type": "xsd:integer"
+    },
+    "notes": {
+      "@id": "agilent:notes",
+      "@type": "xsd:string"
+    },
+    "Core": "agilent:Core",
+    "id": {
+      "@id": "agilent:id",
+      "@type": "xsd:integer"
+    },
+    "name": "schema:name",
+    "institution": {
+      "@id": "agilent:institution",
+      "@type": "xsd:string"
+    },
+    "description": "schema:description",
+    "status": {
+      "@id": "agilent:status",
+      "@type": "xsd:string"
+    },
+    "contactEmail": {
+      "@id": "agilent:contact_email",
+      "@type": "xsd:string"
+    },
+    "url": "schema:url",
+    "Invoices List Response": "agilent:Invoices List Response",
+    "invoices": {
+      "@id": "agilent:invoices",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Cores List Response": "agilent:Cores List Response",
+    "cores": {
+      "@id": "agilent:cores",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "total": {
+      "@id": "agilent:total",
+      "@type": "xsd:integer"
+    },
+    "page": {
+      "@id": "agilent:page",
+      "@type": "xsd:integer"
+    },
+    "perPage": {
+      "@id": "agilent:per_page",
+      "@type": "xsd:integer"
+    },
+    "Member": "agilent:Member",
+    "email": "schema:email",
+    "role": {
+      "@id": "agilent:role",
+      "@type": "xsd:string"
+    },
+    "Price": "agilent:Price",
+    "memberType": {
+      "@id": "agilent:member_type",
+      "@type": "xsd:string"
+    },
+    "unit": {
+      "@id": "agilent:unit",
+      "@type": "xsd:string"
+    },
+    "Prices List Response": "agilent:Prices List Response",
+    "prices": {
+      "@id": "agilent:prices",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Invoice": "agilent:Invoice",
+    "period": {
+      "@id": "agilent:period",
+      "@type": "xsd:string"
+    },
+    "totalAmount": {
+      "@id": "agilent:total_amount",
+      "@type": "xsd:double"
+    },
+    "issuedAt": {
+      "@id": "agilent:issued_at",
+      "@type": "xsd:dateTime"
+    },
+    "Service Request": "agilent:Service Request",
+    "submittedAt": {
+      "@id": "agilent:submitted_at",
+      "@type": "xsd:dateTime"
+    },
+    "principalInvestigator": {
+      "@id": "agilent:principal_investigator",
+      "@type": "xsd:string"
+    },
+    "Project": "agilent:Project",
+    "piName": {
+      "@id": "agilent:pi_name",
+      "@type": "xsd:string"
+    },
+    "accountNumber": {
+      "@id": "agilent:account_number",
+      "@type": "xsd:string"
+    },
+    "Members List Response": "agilent:Members List Response",
+    "members": {
+      "@id": "agilent:members",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Service": "agilent:Service",
+    "Projects List Response": "agilent:Projects List Response",
+    "projects": {
+      "@id": "agilent:projects",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Reservations List Response": "agilent:Reservations List Response",
+    "reservations": {
+      "@id": "agilent:reservations",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Error Response": "agilent:Error Response",
+    "error": {
+      "@id": "agilent:error",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "agilent:message",
+      "@type": "xsd:string"
+    },
+    "Services List Response": "agilent:Services List Response",
+    "services": {
+      "@id": "agilent:services",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Reservation": "agilent:Reservation",
+    "equipmentName": {
+      "@id": "agilent:equipment_name",
+      "@type": "xsd:string"
+    },
+    "startTime": {
+      "@id": "agilent:start_time",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "agilent:end_time",
+      "@type": "xsd:dateTime"
+    },
+    "user": {
+      "@id": "agilent:user",
+      "@type": "xsd:string"
+    }
+  }
+}

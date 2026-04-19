@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-schema/ilab-operations-api-member-schema.json",
+  "title": "Member",
+  "description": "A member of a core facility.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the member.",
+      "example": 400111
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the member.",
+      "example": "Jane Smith"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the member.",
+      "example": "jsmith@stanford.edu"
+    },
+    "role": {
+      "type": "string",
+      "description": "Role of the member in the core.",
+      "enum": [
+        "pi",
+        "researcher",
+        "admin",
+        "staff"
+      ],
+      "example": "pi"
+    },
+    "status": {
+      "type": "string",
+      "description": "Membership status.",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "example": "active"
+    }
+  }
+}

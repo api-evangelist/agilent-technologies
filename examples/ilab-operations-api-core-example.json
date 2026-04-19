@@ -1,0 +1,9 @@
+{
+  "id": 5582,
+  "name": "Genomics Core Facility",
+  "institution": "Stanford University",
+  "description": "High-throughput genomics and sequencing services",
+  "status": "active",
+  "contact_email": "genomics-core@stanford.edu",
+  "url": "https://api.ilabsolutions.com/v1/cores/5582"
+}

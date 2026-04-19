@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-error-response-structure.json",
+  "name": "Error Response",
+  "description": "Standard error response.",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "Error code or type.",
+      "example": "not_found"
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable error message.",
+      "example": "The requested resource was not found."
+    },
+    "status": {
+      "type": "int32",
+      "description": "HTTP status code.",
+      "example": 404
+    }
+  }
+}

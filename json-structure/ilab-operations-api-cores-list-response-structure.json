@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agilent-technologies/refs/heads/main/json-structure/ilab-operations-api-cores-list-response-structure.json",
+  "name": "Cores List Response",
+  "description": "Paginated list of core facilities.",
+  "type": "object",
+  "properties": {
+    "cores": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Core"
+      }
+    },
+    "total": {
+      "type": "int32",
+      "description": "Total number of cores matching the query.",
+      "example": 42
+    },
+    "page": {
+      "type": "int32",
+      "description": "Current page number.",
+      "example": 1
+    },
+    "per_page": {
+      "type": "int32",
+      "description": "Number of items per page.",
+      "example": 25
+    }
+  }
+}
