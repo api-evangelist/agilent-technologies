@@ -1,257 +1,490 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
   label: Agilent Laboratory Operations
-  description: >-
-    Unified laboratory operations capability combining iLab core facility management
-    for billing, scheduling, service requests, and reporting. Used by core facility
-    managers, research administrators, and principal investigators to manage lab
-    operations and integrate with institutional financial systems.
+  description: Unified laboratory operations capability combining iLab core facility management for billing, scheduling, service
+    requests, and reporting. Used by core facility managers, research administrators, and principal investigators to manage
+    lab operations and integrate with institutional financial systems.
   tags:
-    - Agilent
-    - Laboratory Operations
-    - Core Facilities
-    - Billing
-    - Scheduling
-  created: "2026-04-19"
-  modified: "2026-04-19"
-
+  - Agilent
+  - Laboratory Operations
+  - Core Facilities
+  - Billing
+  - Scheduling
+  created: '2026-04-19'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      ILAB_API_TOKEN: ILAB_API_TOKEN
-
+- namespace: env
+  keys:
+    ILAB_API_TOKEN: ILAB_API_TOKEN
 capability:
   consumes:
-    - import: ilab
-      location: ./shared/ilab-operations-api.yaml
-
+  - type: http
+    namespace: ilab
+    baseUri: https://api.ilabsolutions.com/v1
+    description: iLab Operations API for core facility billing, scheduling, and reporting.
+    authentication:
+      type: bearer
+      token: '{{ILAB_API_TOKEN}}'
+    resources:
+    - name: cores
+      path: /cores
+      description: Core facility resources — the root resource of the API.
+      operations:
+      - name: list-cores
+        method: GET
+        description: Returns a list of all core facilities accessible to the authenticated user.
+        inputParameters:
+        - name: institution_id
+          in: query
+          type: integer
+          required: false
+          description: Filter cores by institution identifier.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page number for paginated results.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-core
+        method: GET
+        description: Returns detailed information about a specific core facility.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          required: true
+          description: Unique identifier for the core facility.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: services
+      path: /cores/{core_id}/services
+      description: Services and price lists offered by a core facility.
+      operations:
+      - name: list-services
+        method: GET
+        description: Returns a list of all services offered by a core facility.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          required: true
+          description: Core facility identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: list-service-prices
+        method: GET
+        description: Returns all prices for a given service.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          required: true
+          description: Core facility identifier.
+        - name: service_id
+          in: path
+          type: integer
+          required: true
+          description: Service identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-service-price
+        method: PUT
+        description: Updates the price for a specific pricing tier of a service.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          required: true
+          description: Core facility identifier.
+        - name: service_id
+          in: path
+          type: integer
+          required: true
+          description: Service identifier.
+        - name: price_id
+          in: path
+          type: integer
+          required: true
+          description: Price record identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            amount: '{{tools.amount}}'
+            currency: '{{tools.currency}}'
+    - name: service-requests
+      path: /cores/{core_id}/service_requests
+      description: Service request submissions and management.
+      operations:
+      - name: list-service-requests
+        method: GET
+        description: Returns service requests submitted to a core facility.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          required: true
+          description: Core facility identifier.
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Filter by request status.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-service-request
+        method: POST
+        description: Submits a new service request to a core facility.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          required: true
+          description: Core facility identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            service_id: '{{tools.service_id}}'
+            project_id: '{{tools.project_id}}'
+            quantity: '{{tools.quantity}}'
+            notes: '{{tools.notes}}'
+    - name: reservations
+      path: /cores/{core_id}/reservations
+      description: Equipment reservations and scheduling.
+      operations:
+      - name: list-reservations
+        method: GET
+        description: Returns equipment reservations for a core facility.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          required: true
+          description: Core facility identifier.
+        - name: start_date
+          in: query
+          type: string
+          required: false
+          description: Start date for reservation query (ISO 8601).
+        - name: end_date
+          in: query
+          type: string
+          required: false
+          description: End date for reservation query (ISO 8601).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: invoices
+      path: /cores/{core_id}/invoices
+      description: Billing invoices and financial records.
+      operations:
+      - name: list-invoices
+        method: GET
+        description: Returns billing invoices generated by a core facility.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          required: true
+          description: Core facility identifier.
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Filter by invoice status.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: members
+      path: /cores/{core_id}/members
+      description: Core facility membership and user management.
+      operations:
+      - name: list-members
+        method: GET
+        description: Returns members of a core facility.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          required: true
+          description: Core facility identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projects
+      path: /cores/{core_id}/projects
+      description: Research projects and cost accounts.
+      operations:
+      - name: list-projects
+        method: GET
+        description: Returns research projects and cost accounts associated with a core facility.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          required: true
+          description: Core facility identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: lab-operations-api
-      description: Unified REST API for laboratory operations management.
-      resources:
-        - path: /v1/cores
-          name: cores
-          description: Core facility discovery and management.
-          operations:
-            - method: GET
-              name: list-cores
-              description: List all accessible core facilities.
-              call: "ilab.list-cores"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/services
-          name: services
-          description: Laboratory services and pricing.
-          operations:
-            - method: GET
-              name: list-services
-              description: List services offered by a core facility.
-              call: "ilab.list-services"
-              with:
-                core_id: "rest.core_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/service-requests
-          name: service-requests
-          description: Service request lifecycle management.
-          operations:
-            - method: GET
-              name: list-service-requests
-              description: List service requests for a core facility.
-              call: "ilab.list-service-requests"
-              with:
-                core_id: "rest.core_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-service-request
-              description: Submit a new service request.
-              call: "ilab.create-service-request"
-              with:
-                core_id: "rest.core_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/reservations
-          name: reservations
-          description: Equipment scheduling and reservations.
-          operations:
-            - method: GET
-              name: list-reservations
-              description: List equipment reservations.
-              call: "ilab.list-reservations"
-              with:
-                core_id: "rest.core_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/invoices
-          name: invoices
-          description: Billing and financial reporting.
-          operations:
-            - method: GET
-              name: list-invoices
-              description: List billing invoices for a core facility.
-              call: "ilab.list-invoices"
-              with:
-                core_id: "rest.core_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/projects
-          name: projects
-          description: Research projects and cost account management.
-          operations:
-            - method: GET
-              name: list-projects
-              description: List research projects for billing.
-              call: "ilab.list-projects"
-              with:
-                core_id: "rest.core_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: lab-operations-mcp
-      transport: http
-      description: MCP server for AI-assisted laboratory operations management.
-      tools:
-        - name: list-cores
-          description: List all core facilities accessible to the authenticated user.
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "ilab.list-cores"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-core
-          description: Get details about a specific core facility by ID.
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "ilab.get-core"
-          with:
-            core_id: "tools.core_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-services
-          description: List services offered by a core facility.
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "ilab.list-services"
-          with:
-            core_id: "tools.core_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-service-prices
-          description: List pricing tiers for a specific service.
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "ilab.list-service-prices"
-          with:
-            core_id: "tools.core_id"
-            service_id: "tools.service_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: update-service-price
-          description: Update the price for a service pricing tier.
-          hints:
-            readOnly: false
-            idempotent: true
-          call: "ilab.update-service-price"
-          with:
-            core_id: "tools.core_id"
-            service_id: "tools.service_id"
-            price_id: "tools.price_id"
-            amount: "tools.amount"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-service-requests
-          description: List service requests submitted to a core facility, optionally filtered by status.
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "ilab.list-service-requests"
-          with:
-            core_id: "tools.core_id"
-            status: "tools.status"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-service-request
-          description: Submit a new service request to a core facility for a research project.
-          hints:
-            readOnly: false
-            openWorld: false
-          call: "ilab.create-service-request"
-          with:
-            core_id: "tools.core_id"
-            service_id: "tools.service_id"
-            project_id: "tools.project_id"
-            quantity: "tools.quantity"
-            notes: "tools.notes"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-reservations
-          description: List equipment reservations for a core facility within a date range.
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "ilab.list-reservations"
-          with:
-            core_id: "tools.core_id"
-            start_date: "tools.start_date"
-            end_date: "tools.end_date"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-invoices
-          description: List billing invoices generated by a core facility, optionally filtered by status.
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "ilab.list-invoices"
-          with:
-            core_id: "tools.core_id"
-            status: "tools.status"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-members
-          description: List members of a core facility.
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "ilab.list-members"
-          with:
-            core_id: "tools.core_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-projects
-          description: List research projects and cost accounts for billing purposes.
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "ilab.list-projects"
-          with:
-            core_id: "tools.core_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: lab-operations-api
+    description: Unified REST API for laboratory operations management.
+    resources:
+    - path: /v1/cores
+      name: cores
+      description: Core facility discovery and management.
+      operations:
+      - method: GET
+        name: list-cores
+        description: List all accessible core facilities.
+        call: ilab.list-cores
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/services
+      name: services
+      description: Laboratory services and pricing.
+      operations:
+      - method: GET
+        name: list-services
+        description: List services offered by a core facility.
+        call: ilab.list-services
+        with:
+          core_id: rest.core_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/service-requests
+      name: service-requests
+      description: Service request lifecycle management.
+      operations:
+      - method: GET
+        name: list-service-requests
+        description: List service requests for a core facility.
+        call: ilab.list-service-requests
+        with:
+          core_id: rest.core_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-service-request
+        description: Submit a new service request.
+        call: ilab.create-service-request
+        with:
+          core_id: rest.core_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reservations
+      name: reservations
+      description: Equipment scheduling and reservations.
+      operations:
+      - method: GET
+        name: list-reservations
+        description: List equipment reservations.
+        call: ilab.list-reservations
+        with:
+          core_id: rest.core_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/invoices
+      name: invoices
+      description: Billing and financial reporting.
+      operations:
+      - method: GET
+        name: list-invoices
+        description: List billing invoices for a core facility.
+        call: ilab.list-invoices
+        with:
+          core_id: rest.core_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects
+      name: projects
+      description: Research projects and cost account management.
+      operations:
+      - method: GET
+        name: list-projects
+        description: List research projects for billing.
+        call: ilab.list-projects
+        with:
+          core_id: rest.core_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: lab-operations-mcp
+    transport: http
+    description: MCP server for AI-assisted laboratory operations management.
+    tools:
+    - name: list-cores
+      description: List all core facilities accessible to the authenticated user.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: ilab.list-cores
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-core
+      description: Get details about a specific core facility by ID.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: ilab.get-core
+      with:
+        core_id: tools.core_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-services
+      description: List services offered by a core facility.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: ilab.list-services
+      with:
+        core_id: tools.core_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-service-prices
+      description: List pricing tiers for a specific service.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: ilab.list-service-prices
+      with:
+        core_id: tools.core_id
+        service_id: tools.service_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-service-price
+      description: Update the price for a service pricing tier.
+      hints:
+        readOnly: false
+        idempotent: true
+      call: ilab.update-service-price
+      with:
+        core_id: tools.core_id
+        service_id: tools.service_id
+        price_id: tools.price_id
+        amount: tools.amount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-service-requests
+      description: List service requests submitted to a core facility, optionally filtered by status.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: ilab.list-service-requests
+      with:
+        core_id: tools.core_id
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-service-request
+      description: Submit a new service request to a core facility for a research project.
+      hints:
+        readOnly: false
+        openWorld: false
+      call: ilab.create-service-request
+      with:
+        core_id: tools.core_id
+        service_id: tools.service_id
+        project_id: tools.project_id
+        quantity: tools.quantity
+        notes: tools.notes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-reservations
+      description: List equipment reservations for a core facility within a date range.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: ilab.list-reservations
+      with:
+        core_id: tools.core_id
+        start_date: tools.start_date
+        end_date: tools.end_date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-invoices
+      description: List billing invoices generated by a core facility, optionally filtered by status.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: ilab.list-invoices
+      with:
+        core_id: tools.core_id
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-members
+      description: List members of a core facility.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: ilab.list-members
+      with:
+        core_id: tools.core_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-projects
+      description: List research projects and cost accounts for billing purposes.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: ilab.list-projects
+      with:
+        core_id: tools.core_id
+      outputParameters:
+      - type: object
+        mapping: $.
