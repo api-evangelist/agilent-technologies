@@ -1,159 +1,96 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Agilent Technologies
+providerId: agilent-technologies
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: agilent-technologies
-providerId: agilent-technologies
-publisherName: agilent-technologies
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
+publisherName: Agilent Technologies, Inc.
+serviceCategory: Life Sciences / Lab Software
 tags:
   - Life Sciences
   - Diagnostics
   - Laboratory
-  - Scientific Instruments
   - LIMS
-  - Laboratory Automation
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the agilent-technologies API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: FOCUS-aligned FinOps shape for Agilent's lab software portfolio. Pricing is custom (per-product
+  contract or instrument-bundled) rather than a public usage-based rate card; FinOps focus is allocating
+  spend by lab / instrument / facility and tying it to scientific throughput.
+notes: No public pricing; meters reflect the contract dimensions Agilent typically uses (instruments,
+  seats, samples) plus API request volume customers can self-track.
+sources:
+  - https://www.agilent.com/
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Custom Contract / License
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
+    - Usage
 focusColumns:
-  ServiceName: agilent-technologies
-  ServiceCategory: Developer Tools / API
-  ProviderName: agilent-technologies
-  PublisherName: agilent-technologies
-  InvoiceIssuerName: agilent-technologies
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceName: Agilent Lab Software Portfolio
+  ServiceCategory: Life Sciences / Lab Software
+  ProviderName: Agilent Technologies
+  PublisherName: Agilent Technologies, Inc.
+  InvoiceIssuerName: Agilent Technologies, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
+  - name: ilab_subscription
+    description: iLab Operations Software subscription (typically per facility / per institution)
+    unit: subscription-month
+    aggregation: sum
+    dimensions:
+      - facility
+      - module
+  - name: slims_license
+    description: SLIMS LIMS license (per seat or per environment)
+    unit: license-month
+    aggregation: sum
+    dimensions:
+      - seat
+      - environment
+  - name: crosslab_service_contract
+    description: CrossLab service contract covering instrument maintenance and asset management
+    unit: contract-month
+    aggregation: sum
+    dimensions:
+      - instrument
+      - service_tier
+  - name: vworks_license
+    description: VWorks lab-automation software license per workstation
+    unit: license-month
+    aggregation: sum
+    dimensions:
+      - workstation
   - name: api_requests
-    description: Count of billable API requests
+    description: API requests against any Agilent product API (customer-side telemetry only)
     unit: request
     aggregation: sum
     dimensions:
       - api
-      - endpoint
       - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Agilent iLab Operations API
-    baseURL: https://api.ilabsolutions.com/v1
-    tags:
-      - Laboratory Operations
-      - Billing
-      - Core Facilities
-      - Scheduling
-    serviceName: Agilent iLab Operations API
-    serviceCategory: API
-  - name: Agilent SLIMS REST API
-    baseURL: https://your-slims-instance/rest
-    tags:
-      - LIMS
-      - Laboratory Information Management
-      - NGS
-      - Biobank
-    serviceName: Agilent SLIMS REST API
-    serviceCategory: API
-  - name: Agilent CrossLab Asset Manager API
-    baseURL: https://crosslab-api.agilent.com
-    tags:
-      - Asset Management
-      - Instrument Services
-      - CrossLab
-      - Maintenance
-    serviceName: Agilent CrossLab Asset Manager API
-    serviceCategory: API
-  - name: Agilent VWorks Automation API
-    baseURL: https://www.agilent.com
-    tags:
-      - Laboratory Automation
-      - Robotics
-      - Liquid Handling
-      - Workstation
-    serviceName: Agilent VWorks Automation API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
-maintainers: []
+principles:
+  - name: Visibility
+    description: Track Agilent costs from product invoices and CrossLab service-contract statements; for
+      API request visibility, instrument it client-side since Agilent does not expose a unified usage API.
+  - name: Allocation
+    description: Allocate by instrument serial number, facility, and lab / cost center — these are the
+      same dimensions Agilent uses to scope contracts.
+  - name: Optimization
+    description: Optimize by right-sizing iLab seat counts, retiring unused SLIMS environments, and
+      negotiating CrossLab tiers to match instrument criticality (response-time SLAs vs basic coverage).
+  - name: Accountability
+    description: Lab operations / core-facility leadership owns Agilent spend; align reviews with the
+      annual CrossLab and SLIMS renewal cycles and instrument capital cycles.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
