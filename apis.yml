@@ -66,7 +66,7 @@ apis:
       - type: JSONStructure
         url: json-structure/ilab-operations-api-service-request-structure.json
         title: Service Request Structure
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/agilent-ilab-operations-api-context.jsonld
   - name: Agilent SLIMS REST API
     description: >-
