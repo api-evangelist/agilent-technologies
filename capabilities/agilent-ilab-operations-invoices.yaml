@@ -1,0 +1,86 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Agilent iLab Operations API — Invoices
+  description: 'Agilent iLab Operations API — Invoices. 1 operations. Lead operation: Agilent iLab List Invoices. Self-contained
+    Naftiko capability covering one Agilent Technologies business surface.'
+  tags:
+  - Agilent Technologies
+  - Invoices
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AGILENT_TECHNOLOGIES_API_KEY: AGILENT_TECHNOLOGIES_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: agilent-ilab-operations-invoices
+    baseUri: https://api.ilabsolutions.com/v1
+    description: Agilent iLab Operations API — Invoices business capability. Self-contained, no shared references.
+    resources:
+    - name: cores-core_id-invoices
+      path: /cores/{core_id}/invoices
+      operations:
+      - name: listinvoices
+        method: GET
+        description: Agilent iLab List Invoices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          description: Unique identifier for the core facility.
+          required: true
+        - name: status
+          in: query
+          type: string
+          description: Filter by invoice status (draft, sent, paid, voided).
+    authentication:
+      type: bearer
+      token: '{{env.AGILENT_TECHNOLOGIES_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: agilent-ilab-operations-invoices-rest
+    port: 8080
+    description: REST adapter for Agilent iLab Operations API — Invoices. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/cores/{core-id}/invoices
+      name: cores-core-id-invoices
+      description: REST surface for cores-core_id-invoices.
+      operations:
+      - method: GET
+        name: listinvoices
+        description: Agilent iLab List Invoices
+        call: agilent-ilab-operations-invoices.listinvoices
+        with:
+          core_id: rest.core_id
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: agilent-ilab-operations-invoices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Agilent iLab Operations API — Invoices. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: agilent-ilab-list-invoices
+      description: Agilent iLab List Invoices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: agilent-ilab-operations-invoices.listinvoices
+      with:
+        core_id: tools.core_id
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.

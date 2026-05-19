@@ -1,0 +1,92 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Agilent iLab Operations API — Reservations
+  description: 'Agilent iLab Operations API — Reservations. 1 operations. Lead operation: Agilent iLab List Reservations.
+    Self-contained Naftiko capability covering one Agilent Technologies business surface.'
+  tags:
+  - Agilent Technologies
+  - Reservations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AGILENT_TECHNOLOGIES_API_KEY: AGILENT_TECHNOLOGIES_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: agilent-ilab-operations-reservations
+    baseUri: https://api.ilabsolutions.com/v1
+    description: Agilent iLab Operations API — Reservations business capability. Self-contained, no shared references.
+    resources:
+    - name: cores-core_id-reservations
+      path: /cores/{core_id}/reservations
+      operations:
+      - name: listreservations
+        method: GET
+        description: Agilent iLab List Reservations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: core_id
+          in: path
+          type: integer
+          description: Unique identifier for the core facility.
+          required: true
+        - name: start_date
+          in: query
+          type: string
+          description: Start date for reservation query (ISO 8601).
+        - name: end_date
+          in: query
+          type: string
+          description: End date for reservation query (ISO 8601).
+    authentication:
+      type: bearer
+      token: '{{env.AGILENT_TECHNOLOGIES_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: agilent-ilab-operations-reservations-rest
+    port: 8080
+    description: REST adapter for Agilent iLab Operations API — Reservations. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/cores/{core-id}/reservations
+      name: cores-core-id-reservations
+      description: REST surface for cores-core_id-reservations.
+      operations:
+      - method: GET
+        name: listreservations
+        description: Agilent iLab List Reservations
+        call: agilent-ilab-operations-reservations.listreservations
+        with:
+          core_id: rest.core_id
+          start_date: rest.start_date
+          end_date: rest.end_date
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: agilent-ilab-operations-reservations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Agilent iLab Operations API — Reservations. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: agilent-ilab-list-reservations
+      description: Agilent iLab List Reservations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: agilent-ilab-operations-reservations.listreservations
+      with:
+        core_id: tools.core_id
+        start_date: tools.start_date
+        end_date: tools.end_date
+      outputParameters:
+      - type: object
+        mapping: $.
