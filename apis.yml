@@ -7,12 +7,12 @@ description: Agilent Technologies is a global leader in life sciences, diagnosti
   Asset Manager for instrument management, and VWorks for laboratory automation.
 tags:
   - Fortune 500
-- Life Sciences
-- Diagnostics
-- Laboratory
-- Scientific Instruments
-- LIMS
-- Laboratory Automation
+  - Life Sciences
+  - Diagnostics
+  - Laboratory
+  - Scientific Instruments
+  - LIMS
+  - Laboratory Automation
 apis:
 - name: Agilent iLab Operations API
   description: The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting
@@ -62,19 +62,19 @@ apis:
     title: Service Request Structure
   - type: JSONLD
     url: json-ld/agilent-ilab-operations-api-context.jsonld
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/agilent-ilab-operations-cores.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/agilent-ilab-operations-invoices.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/agilent-ilab-operations-members.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/agilent-ilab-operations-projects.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/agilent-ilab-operations-reservations.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/agilent-ilab-operations-service-requests.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/agilent-ilab-operations-services.yaml
 - name: Agilent SLIMS REST API
   description: The SLIMS (Smart Laboratory Information Management System) REST API provides programmatic access to Agilent
@@ -91,10 +91,10 @@ apis:
   - type: Documentation
     url: https://community.agilent.com/cfs-file/__key/docpreview-s/00-00-02-00-89/slims_5F00_development_5F00_manual_2D00_6.9.29.pdf
     title: SLIMS Development Manual v6.9
-  - type: SDK
+  - type: SDKs
     url: https://github.com/genohm/slims-python-api
     title: Python SDK
-  - type: SDK
+  - type: SDKs
     url: https://github.com/genohm/slims-api
     title: Plugin API
 - name: Agilent CrossLab Asset Manager API
