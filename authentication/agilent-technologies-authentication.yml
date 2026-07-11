@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/agilent-ilab-operations-api.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: API token obtained from iLab Administration > API Clients. Contact ilab-support@agilent.com
+    to obtain credentials.
+  sources:
+  - openapi/agilent-ilab-operations-api.yaml

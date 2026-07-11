@@ -127,6 +127,10 @@ apis:
     url: https://www.agilent.com/cs/library/usermanuals/public/D0008025_VWorks_API_Reference_Agilent.pdf
     title: VWorks API Reference Guide v14.0
 common:
+- type: DomainSecurity
+  url: security/agilent-technologies-domain-security.yml
+- type: Authentication
+  url: authentication/agilent-technologies-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/agilent-technologies
 - type: Website
