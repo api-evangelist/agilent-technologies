@@ -1,5 +1,24 @@
+# agilent-technologies — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - servers-expected-domain: 1/1 servers on ilabsolutions.com
+#   - path-params-casing: snake @ 100% (n=13)
+#   - query-params-casing: snake @ 100% (n=8)
+#   - operationid-casing: camel @ 100% (n=11)
+#   - schema-names-casing: pascal @ 100% (n=19)
+#   - schema-properties-casing: snake @ 100% (n=66)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - error-schema-defined: ErrorResponse
+#   - pagination params observed: ['page', 'per_page']
+#   - merge: kept 35 existing, added 6 measured, upgraded 0
+#   - added: servers-expected-domain, path-params-casing, query-params-casing, schema-names-casing, schema-properties-casing, error-schema-defined
+extends:
+  - spectral:oas
 rules:
-  # INFO / METADATA
   info-title-required:
     description: OpenAPI info must have a title.
     severity: error
@@ -7,7 +26,6 @@ rules:
     then:
       field: title
       function: truthy
-
   info-title-prefix:
     description: API title should start with "Agilent".
     severity: warn
@@ -15,8 +33,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^Agilent"
-
+        match: ^Agilent
   info-description-required:
     description: OpenAPI info must have a description.
     severity: warn
@@ -24,7 +41,6 @@ rules:
     then:
       field: description
       function: truthy
-
   info-version-required:
     description: OpenAPI info must have a version.
     severity: error
@@ -32,7 +48,6 @@ rules:
     then:
       field: version
       function: truthy
-
   info-contact-required:
     description: OpenAPI info should include contact information.
     severity: warn
@@ -40,8 +55,6 @@ rules:
     then:
       field: contact
       function: truthy
-
-  # OPENAPI VERSION
   openapi-version-3:
     description: Must use OpenAPI 3.0.x specification version.
     severity: error
@@ -50,9 +63,7 @@ rules:
       field: openapi
       function: pattern
       functionOptions:
-        match: "^3\\.0\\."
-
-  # SERVERS
+        match: ^3\.0\.
   servers-defined:
     description: At least one server must be defined.
     severity: error
@@ -60,7 +71,6 @@ rules:
     then:
       field: servers
       function: truthy
-
   servers-https-required:
     description: Server URLs must use HTTPS.
     severity: error
@@ -68,9 +78,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^https://"
-
-  # PATHS — NAMING CONVENTIONS
+        match: ^https://
   paths-kebab-case:
     description: Path segments should use kebab-case (lowercase with hyphens).
     severity: warn
@@ -78,8 +86,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^(/[a-z0-9_{}\\-]+)+$"
-
+        match: ^(/[a-z0-9_{}\-]+)+$
   paths-no-trailing-slash:
     description: Paths must not end with a trailing slash.
     severity: warn
@@ -87,8 +94,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        notMatch: "/$"
-
+        notMatch: /$
   paths-plural-nouns:
     description: Path collection segments should use plural nouns.
     severity: info
@@ -96,9 +102,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^/[a-z]"
-
-  # OPERATIONS
+        match: ^/[a-z]
   operation-summary-required:
     description: Every operation must have a summary.
     severity: error
@@ -106,7 +110,6 @@ rules:
     then:
       field: summary
       function: truthy
-
   operation-summary-prefix:
     description: Operation summaries should start with "Agilent iLab".
     severity: warn
@@ -114,8 +117,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^Agilent"
-
+        match: ^Agilent
   operation-description-required:
     description: Every operation must have a description.
     severity: warn
@@ -123,7 +125,6 @@ rules:
     then:
       field: description
       function: truthy
-
   operation-id-required:
     description: Every operation must have an operationId.
     severity: error
@@ -131,7 +132,6 @@ rules:
     then:
       field: operationId
       function: truthy
-
   operation-id-camel-case:
     description: operationId should use camelCase.
     severity: warn
@@ -139,8 +139,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-zA-Z0-9]+$"
-
+        match: ^[a-z][a-zA-Z0-9]+$
   operation-tags-required:
     description: Every operation must have at least one tag.
     severity: warn
@@ -148,8 +147,6 @@ rules:
     then:
       field: tags
       function: truthy
-
-  # TAGS
   tags-defined:
     description: Global tags array should be defined.
     severity: warn
@@ -157,7 +154,6 @@ rules:
     then:
       field: tags
       function: truthy
-
   tag-description-required:
     description: Each global tag should have a description.
     severity: info
@@ -165,8 +161,6 @@ rules:
     then:
       field: description
       function: truthy
-
-  # PARAMETERS
   parameter-description-required:
     description: Every parameter must have a description.
     severity: warn
@@ -174,7 +168,6 @@ rules:
     then:
       field: description
       function: truthy
-
   parameter-schema-required:
     description: Every parameter must have a schema.
     severity: error
@@ -182,7 +175,6 @@ rules:
     then:
       field: schema
       function: truthy
-
   parameter-snake-case:
     description: Query and path parameter names should use snake_case.
     severity: warn
@@ -190,32 +182,26 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-z0-9_]*$"
-
-  # REQUEST BODIES
+        match: ^[a-z][a-z0-9_]*$
   request-body-json-content:
     description: Request bodies should use application/json content type.
     severity: warn
     given: $.paths[*][post,put,patch].requestBody.content
     then:
       function: truthy
-
-  # RESPONSES
   response-success-required:
     description: Every operation must define at least one 2xx response.
     severity: error
     given: $.paths[*][get,post,put,patch,delete].responses
     then:
       function: truthy
-
   response-401-defined:
     description: Protected operations should define a 401 Unauthorized response.
     severity: warn
     given: $.paths[*][get,post,put,patch,delete].responses
     then:
-      field: "401"
+      field: '401'
       function: truthy
-
   response-description-required:
     description: Every response must have a description.
     severity: warn
@@ -223,8 +209,6 @@ rules:
     then:
       field: description
       function: truthy
-
-  # SCHEMAS — PROPERTY NAMING
   schema-description-required:
     description: Top-level component schemas should have a description.
     severity: warn
@@ -232,7 +216,6 @@ rules:
     then:
       field: description
       function: truthy
-
   schema-property-snake-case:
     description: Schema property names should use snake_case.
     severity: warn
@@ -240,8 +223,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-z0-9_]*$"
-
+        match: ^[a-z][a-z0-9_]*$
   schema-type-defined:
     description: Schema properties should define a type.
     severity: warn
@@ -249,8 +231,6 @@ rules:
     then:
       field: type
       function: truthy
-
-  # SECURITY
   security-schemes-defined:
     description: Security schemes must be defined in components.
     severity: error
@@ -258,7 +238,6 @@ rules:
     then:
       field: securitySchemes
       function: truthy
-
   security-global-defined:
     description: Global security should be defined.
     severity: warn
@@ -266,8 +245,6 @@ rules:
     then:
       field: security
       function: truthy
-
-  # HTTP METHOD CONVENTIONS
   get-no-request-body:
     description: GET operations must not have a request body.
     severity: error
@@ -275,7 +252,6 @@ rules:
     then:
       field: requestBody
       function: falsy
-
   delete-no-request-body:
     description: DELETE operations should not have a request body.
     severity: warn
@@ -283,19 +259,66 @@ rules:
     then:
       field: requestBody
       function: falsy
-
-  # GENERAL QUALITY
   no-empty-descriptions:
     description: Descriptions must not be empty strings.
     severity: warn
     given: $..description
     then:
       function: truthy
-
   examples-encouraged:
     description: Schema properties should include example values.
     severity: info
     given: $.components.schemas[*].properties[*]
     then:
       field: example
+      function: truthy
+  servers-expected-domain:
+    description: Server URLs should be on the ilabsolutions.com domain.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: ilabsolutions\.com
+  path-params-casing:
+    description: Path parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: snake
+  query-params-casing:
+    description: Query parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: snake
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: pascal
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  error-schema-defined:
+    description: A shared error schema (ErrorResponse) should be defined for error payloads.
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: ErrorResponse
       function: truthy
