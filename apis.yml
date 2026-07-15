@@ -127,6 +127,8 @@ apis:
     url: https://www.agilent.com/cs/library/usermanuals/public/D0008025_VWorks_API_Reference_Agilent.pdf
     title: VWorks API Reference Guide v14.0
 common:
+- type: AgenticAccess
+  url: agentic-access/agilent-technologies-agentic-access.yml
 - type: DomainSecurity
   url: security/agilent-technologies-domain-security.yml
 - type: Authentication
