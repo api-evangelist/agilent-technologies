@@ -1,0 +1,201 @@
+openapi: 3.0.3
+info:
+  title: Agilent iLab Operations Cores API
+  description: The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting modules. It leverages a RESTful application architecture with HATEOAS (Hypermedia as the Engine of Application State) and OAuth2 for secure access. The API supports integrations with institutional financial systems such as SAP, Oracle/PeopleSoft, Lawson, and Banner, as well as identity management systems and LIMS.
+  version: v1
+  contact:
+    email: ilab-support@agilent.com
+    url: https://help.ilab.agilent.com
+  x-generated-from: documentation
+servers:
+- url: https://api.ilabsolutions.com/v1
+  description: iLab API v1
+security:
+- BearerAuth: []
+tags:
+- name: Cores
+  description: Core facility resources — the root resource of the API
+paths:
+  /cores:
+    get:
+      operationId: listCores
+      summary: Agilent iLab List Cores
+      description: Returns a list of all core facilities accessible to the authenticated user.
+      tags:
+      - Cores
+      parameters:
+      - name: institution_id
+        in: query
+        description: Filter cores by institution identifier.
+        required: false
+        schema:
+          type: integer
+          example: 123
+      - name: page
+        in: query
+        description: Page number for paginated results.
+        required: false
+        schema:
+          type: integer
+          example: 1
+      - name: per_page
+        in: query
+        description: Number of results per page.
+        required: false
+        schema:
+          type: integer
+          example: 25
+      responses:
+        '200':
+          description: A list of core facilities.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoresListResponse'
+              examples:
+                ListCores200Example:
+                  summary: Default listCores 200 response
+                  x-microcks-default: true
+                  value:
+                    cores:
+                    - id: 5582
+                      name: Genomics Core Facility
+                      institution: Stanford University
+                      description: High-throughput genomics and sequencing services
+                      status: active
+                      url: https://api.ilabsolutions.com/v1/cores/5582
+        '401':
+          description: Unauthorized. Invalid or missing API token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}:
+    get:
+      operationId: getCore
+      summary: Agilent iLab Get Core
+      description: Returns detailed information about a specific core facility.
+      tags:
+      - Cores
+      parameters:
+      - name: core_id
+        in: path
+        description: Unique identifier for the core facility.
+        required: true
+        schema:
+          type: integer
+          example: 5582
+      responses:
+        '200':
+          description: Core facility details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Core'
+              examples:
+                GetCore200Example:
+                  summary: Default getCore 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 5582
+                    name: Genomics Core Facility
+                    institution: Stanford University
+                    description: High-throughput genomics and sequencing services
+                    status: active
+                    contact_email: genomics-core@stanford.edu
+                    url: https://api.ilabsolutions.com/v1/cores/5582
+        '404':
+          description: Core not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      title: Error Response
+      description: Standard error response.
+      properties:
+        error:
+          type: string
+          description: Error code or type.
+          example: not_found
+        message:
+          type: string
+          description: Human-readable error message.
+          example: The requested resource was not found.
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 404
+    Core:
+      type: object
+      title: Core
+      description: A core facility within an institution.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the core facility.
+          example: 5582
+        name:
+          type: string
+          description: Display name of the core facility.
+          example: Genomics Core Facility
+        institution:
+          type: string
+          description: Name of the institution operating the core.
+          example: Stanford University
+        description:
+          type: string
+          description: Description of the core facility's capabilities.
+          example: High-throughput genomics and sequencing services
+        status:
+          type: string
+          description: Operational status of the core.
+          enum:
+          - active
+          - inactive
+          example: active
+        contact_email:
+          type: string
+          format: email
+          description: Contact email for the core facility.
+          example: genomics-core@stanford.edu
+        url:
+          type: string
+          format: uri
+          description: API URL for this core resource.
+          example: https://api.ilabsolutions.com/v1/cores/5582
+    CoresListResponse:
+      type: object
+      title: Cores List Response
+      description: Paginated list of core facilities.
+      properties:
+        cores:
+          type: array
+          items:
+            $ref: '#/components/schemas/Core'
+        total:
+          type: integer
+          description: Total number of cores matching the query.
+          example: 42
+        page:
+          type: integer
+          description: Current page number.
+          example: 1
+        per_page:
+          type: integer
+          description: Number of items per page.
+          example: 25
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token obtained from iLab Administration > API Clients. Contact ilab-support@agilent.com to obtain credentials.

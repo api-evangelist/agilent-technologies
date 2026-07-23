@@ -1,0 +1,288 @@
+openapi: 3.0.3
+info:
+  title: Agilent iLab Operations Cores Services API
+  description: The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting modules. It leverages a RESTful application architecture with HATEOAS (Hypermedia as the Engine of Application State) and OAuth2 for secure access. The API supports integrations with institutional financial systems such as SAP, Oracle/PeopleSoft, Lawson, and Banner, as well as identity management systems and LIMS.
+  version: v1
+  contact:
+    email: ilab-support@agilent.com
+    url: https://help.ilab.agilent.com
+  x-generated-from: documentation
+servers:
+- url: https://api.ilabsolutions.com/v1
+  description: iLab API v1
+security:
+- BearerAuth: []
+tags:
+- name: Services
+  description: Services and price lists offered by a core facility
+paths:
+  /cores/{core_id}/services:
+    get:
+      operationId: listServices
+      summary: Agilent iLab List Services
+      description: Returns a list of all services offered by a core facility.
+      tags:
+      - Services
+      parameters:
+      - name: core_id
+        in: path
+        description: Unique identifier for the core facility.
+        required: true
+        schema:
+          type: integer
+          example: 5582
+      responses:
+        '200':
+          description: A list of services for the core facility.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicesListResponse'
+              examples:
+                ListServices200Example:
+                  summary: Default listServices 200 response
+                  x-microcks-default: true
+                  value:
+                    services:
+                    - id: 493801
+                      name: RNA Sequencing
+                      description: Transcriptome sequencing service
+                      status: active
+                      url: https://api.ilabsolutions.com/v1/cores/5582/services/493801
+        '404':
+          description: Core not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}/services/{service_id}/prices:
+    get:
+      operationId: listServicePrices
+      summary: Agilent iLab List Service Prices
+      description: Returns all prices for a given service in a core facility.
+      tags:
+      - Services
+      parameters:
+      - name: core_id
+        in: path
+        description: Unique identifier for the core facility.
+        required: true
+        schema:
+          type: integer
+          example: 5582
+      - name: service_id
+        in: path
+        description: Unique identifier for the service.
+        required: true
+        schema:
+          type: integer
+          example: 493801
+      responses:
+        '200':
+          description: Price list for the service.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricesListResponse'
+              examples:
+                ListServicePrices200Example:
+                  summary: Default listServicePrices 200 response
+                  x-microcks-default: true
+                  value:
+                    prices:
+                    - id: 66
+                      member_type: internal
+                      amount: 150.0
+                      currency: USD
+                      unit: per_sample
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}/services/{service_id}/prices/{price_id}:
+    put:
+      operationId: updateServicePrice
+      summary: Agilent iLab Update Service Price
+      description: Updates the price for a specific pricing tier of a service.
+      tags:
+      - Services
+      parameters:
+      - name: core_id
+        in: path
+        description: Unique identifier for the core facility.
+        required: true
+        schema:
+          type: integer
+          example: 5582
+      - name: service_id
+        in: path
+        description: Unique identifier for the service.
+        required: true
+        schema:
+          type: integer
+          example: 493801
+      - name: price_id
+        in: path
+        description: Unique identifier for the price record.
+        required: true
+        schema:
+          type: integer
+          example: 66
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceUpdateRequest'
+            examples:
+              UpdateServicePriceRequestExample:
+                summary: Default updateServicePrice request
+                x-microcks-default: true
+                value:
+                  amount: 175.0
+                  currency: USD
+      responses:
+        '200':
+          description: Updated price record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Price'
+              examples:
+                UpdateServicePrice200Example:
+                  summary: Default updateServicePrice 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 66
+                    member_type: internal
+                    amount: 175.0
+                    currency: USD
+                    unit: per_sample
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ServicesListResponse:
+      type: object
+      title: Services List Response
+      description: List of services for a core facility.
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
+    Price:
+      type: object
+      title: Price
+      description: A pricing tier for a service.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this price record.
+          example: 66
+        member_type:
+          type: string
+          description: Member type this price applies to (internal, external, collaborator).
+          enum:
+          - internal
+          - external
+          - collaborator
+          example: internal
+        amount:
+          type: number
+          format: double
+          description: Price amount.
+          example: 150.0
+        currency:
+          type: string
+          description: Currency code (ISO 4217).
+          example: USD
+        unit:
+          type: string
+          description: Unit of measurement for the price.
+          example: per_sample
+    ErrorResponse:
+      type: object
+      title: Error Response
+      description: Standard error response.
+      properties:
+        error:
+          type: string
+          description: Error code or type.
+          example: not_found
+        message:
+          type: string
+          description: Human-readable error message.
+          example: The requested resource was not found.
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 404
+    Service:
+      type: object
+      title: Service
+      description: A service offered by a core facility.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the service.
+          example: 493801
+        name:
+          type: string
+          description: Name of the service.
+          example: RNA Sequencing
+        description:
+          type: string
+          description: Description of the service.
+          example: Transcriptome sequencing service
+        status:
+          type: string
+          description: Availability status of the service.
+          enum:
+          - active
+          - inactive
+          example: active
+        url:
+          type: string
+          format: uri
+          description: API URL for this service resource.
+          example: https://api.ilabsolutions.com/v1/cores/5582/services/493801
+    PricesListResponse:
+      type: object
+      title: Prices List Response
+      description: List of prices for a service.
+      properties:
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+    PriceUpdateRequest:
+      type: object
+      title: Price Update Request
+      description: Request body for updating a service price.
+      required:
+      - amount
+      properties:
+        amount:
+          type: number
+          format: double
+          description: New price amount.
+          example: 175.0
+        currency:
+          type: string
+          description: Currency code (ISO 4217).
+          example: USD
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token obtained from iLab Administration > API Clients. Contact ilab-support@agilent.com to obtain credentials.

@@ -1,0 +1,113 @@
+openapi: 3.0.3
+info:
+  title: Agilent iLab Operations Cores Reservations API
+  description: The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting modules. It leverages a RESTful application architecture with HATEOAS (Hypermedia as the Engine of Application State) and OAuth2 for secure access. The API supports integrations with institutional financial systems such as SAP, Oracle/PeopleSoft, Lawson, and Banner, as well as identity management systems and LIMS.
+  version: v1
+  contact:
+    email: ilab-support@agilent.com
+    url: https://help.ilab.agilent.com
+  x-generated-from: documentation
+servers:
+- url: https://api.ilabsolutions.com/v1
+  description: iLab API v1
+security:
+- BearerAuth: []
+tags:
+- name: Reservations
+  description: Equipment reservations and scheduling
+paths:
+  /cores/{core_id}/reservations:
+    get:
+      operationId: listReservations
+      summary: Agilent iLab List Reservations
+      description: Returns equipment reservations for a core facility.
+      tags:
+      - Reservations
+      parameters:
+      - name: core_id
+        in: path
+        description: Unique identifier for the core facility.
+        required: true
+        schema:
+          type: integer
+          example: 5582
+      - name: start_date
+        in: query
+        description: Start date for reservation query (ISO 8601).
+        required: false
+        schema:
+          type: string
+          format: date
+          example: '2026-04-01'
+      - name: end_date
+        in: query
+        description: End date for reservation query (ISO 8601).
+        required: false
+        schema:
+          type: string
+          format: date
+          example: '2026-04-30'
+      responses:
+        '200':
+          description: A list of equipment reservations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationsListResponse'
+              examples:
+                ListReservations200Example:
+                  summary: Default listReservations 200 response
+                  x-microcks-default: true
+                  value:
+                    reservations:
+                    - id: 200456
+                      equipment_name: Illumina NovaSeq 6000
+                      start_time: '2026-04-20T09:00:00Z'
+                      end_time: '2026-04-20T17:00:00Z'
+                      user: jsmith
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ReservationsListResponse:
+      type: object
+      title: Reservations List Response
+      description: List of reservations for a core facility.
+      properties:
+        reservations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reservation'
+    Reservation:
+      type: object
+      title: Reservation
+      description: An equipment reservation at a core facility.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the reservation.
+          example: 200456
+        equipment_name:
+          type: string
+          description: Name of the reserved equipment.
+          example: Illumina NovaSeq 6000
+        start_time:
+          type: string
+          format: date-time
+          description: Reservation start time (ISO 8601).
+          example: '2026-04-20T09:00:00Z'
+        end_time:
+          type: string
+          format: date-time
+          description: Reservation end time (ISO 8601).
+          example: '2026-04-20T17:00:00Z'
+        user:
+          type: string
+          description: Username of the person who made the reservation.
+          example: jsmith
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token obtained from iLab Administration > API Clients. Contact ilab-support@agilent.com to obtain credentials.

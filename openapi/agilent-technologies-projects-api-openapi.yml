@@ -1,0 +1,98 @@
+openapi: 3.0.3
+info:
+  title: Agilent iLab Operations Cores Projects API
+  description: The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting modules. It leverages a RESTful application architecture with HATEOAS (Hypermedia as the Engine of Application State) and OAuth2 for secure access. The API supports integrations with institutional financial systems such as SAP, Oracle/PeopleSoft, Lawson, and Banner, as well as identity management systems and LIMS.
+  version: v1
+  contact:
+    email: ilab-support@agilent.com
+    url: https://help.ilab.agilent.com
+  x-generated-from: documentation
+servers:
+- url: https://api.ilabsolutions.com/v1
+  description: iLab API v1
+security:
+- BearerAuth: []
+tags:
+- name: Projects
+  description: Research projects and cost accounts
+paths:
+  /cores/{core_id}/projects:
+    get:
+      operationId: listProjects
+      summary: Agilent iLab List Projects
+      description: Returns research projects and cost accounts associated with a core facility.
+      tags:
+      - Projects
+      parameters:
+      - name: core_id
+        in: path
+        description: Unique identifier for the core facility.
+        required: true
+        schema:
+          type: integer
+          example: 5582
+      responses:
+        '200':
+          description: A list of projects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsListResponse'
+              examples:
+                ListProjects200Example:
+                  summary: Default listProjects 200 response
+                  x-microcks-default: true
+                  value:
+                    projects:
+                    - id: 987
+                      name: Cancer Genomics Study 2026
+                      pi_name: Jane Smith
+                      account_number: 1234-5678
+                      status: active
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ProjectsListResponse:
+      type: object
+      title: Projects List Response
+      description: List of research projects for a core facility.
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+    Project:
+      type: object
+      title: Project
+      description: A research project or cost account.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the project.
+          example: 987
+        name:
+          type: string
+          description: Name of the research project.
+          example: Cancer Genomics Study 2026
+        pi_name:
+          type: string
+          description: Name of the principal investigator.
+          example: Jane Smith
+        account_number:
+          type: string
+          description: Financial account number for billing.
+          example: 1234-5678
+        status:
+          type: string
+          description: Project status.
+          enum:
+          - active
+          - closed
+          example: active
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token obtained from iLab Administration > API Clients. Contact ilab-support@agilent.com to obtain credentials.

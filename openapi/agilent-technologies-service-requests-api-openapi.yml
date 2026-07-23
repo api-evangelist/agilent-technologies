@@ -1,0 +1,204 @@
+openapi: 3.0.3
+info:
+  title: Agilent iLab Operations Cores Service Requests API
+  description: The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting modules. It leverages a RESTful application architecture with HATEOAS (Hypermedia as the Engine of Application State) and OAuth2 for secure access. The API supports integrations with institutional financial systems such as SAP, Oracle/PeopleSoft, Lawson, and Banner, as well as identity management systems and LIMS.
+  version: v1
+  contact:
+    email: ilab-support@agilent.com
+    url: https://help.ilab.agilent.com
+  x-generated-from: documentation
+servers:
+- url: https://api.ilabsolutions.com/v1
+  description: iLab API v1
+security:
+- BearerAuth: []
+tags:
+- name: Service Requests
+  description: Service request submissions and management
+paths:
+  /cores/{core_id}/service_requests:
+    get:
+      operationId: listServiceRequests
+      summary: Agilent iLab List Service Requests
+      description: Returns service requests submitted to a core facility.
+      tags:
+      - Service Requests
+      parameters:
+      - name: core_id
+        in: path
+        description: Unique identifier for the core facility.
+        required: true
+        schema:
+          type: integer
+          example: 5582
+      - name: status
+        in: query
+        description: Filter by request status (submitted, processing, completed, cancelled).
+        required: false
+        schema:
+          type: string
+          enum:
+          - submitted
+          - processing
+          - completed
+          - cancelled
+          example: submitted
+      - name: page
+        in: query
+        description: Page number for paginated results.
+        required: false
+        schema:
+          type: integer
+          example: 1
+      responses:
+        '200':
+          description: A list of service requests.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceRequestsListResponse'
+              examples:
+                ListServiceRequests200Example:
+                  summary: Default listServiceRequests 200 response
+                  x-microcks-default: true
+                  value:
+                    service_requests:
+                    - id: 100123
+                      service_id: 493801
+                      status: submitted
+                      submitted_at: '2025-03-15T14:30:00Z'
+                      principal_investigator: Jane Smith
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createServiceRequest
+      summary: Agilent iLab Create Service Request
+      description: Submits a new service request to a core facility.
+      tags:
+      - Service Requests
+      parameters:
+      - name: core_id
+        in: path
+        description: Unique identifier for the core facility.
+        required: true
+        schema:
+          type: integer
+          example: 5582
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequestCreateRequest'
+            examples:
+              CreateServiceRequestRequestExample:
+                summary: Default createServiceRequest request
+                x-microcks-default: true
+                value:
+                  service_id: 493801
+                  project_id: 987
+                  quantity: 5
+                  notes: RNA sequencing for experiment batch 12
+      responses:
+        '201':
+          description: Service request created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceRequest'
+              examples:
+                CreateServiceRequest201Example:
+                  summary: Default createServiceRequest 201 response
+                  x-microcks-default: true
+                  value:
+                    id: 100124
+                    service_id: 493801
+                    status: submitted
+                    submitted_at: '2026-04-19T10:00:00Z'
+                    quantity: 5
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ServiceRequestCreateRequest:
+      type: object
+      title: Service Request Create Request
+      description: Request body for creating a new service request.
+      required:
+      - service_id
+      properties:
+        service_id:
+          type: integer
+          description: Identifier of the service to request.
+          example: 493801
+        project_id:
+          type: integer
+          description: Identifier of the research project to bill.
+          example: 987
+        quantity:
+          type: integer
+          description: Number of units to request.
+          example: 5
+        notes:
+          type: string
+          description: Additional notes for the core facility.
+          example: RNA sequencing for experiment batch 12
+    ServiceRequestsListResponse:
+      type: object
+      title: Service Requests List Response
+      description: List of service requests for a core facility.
+      properties:
+        service_requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceRequest'
+    ServiceRequest:
+      type: object
+      title: Service Request
+      description: A service request submitted to a core facility.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the service request.
+          example: 100123
+        service_id:
+          type: integer
+          description: Identifier of the service being requested.
+          example: 493801
+        project_id:
+          type: integer
+          description: Identifier of the research project to bill.
+          example: 987
+        status:
+          type: string
+          description: Current status of the service request.
+          enum:
+          - submitted
+          - processing
+          - completed
+          - cancelled
+          example: submitted
+        quantity:
+          type: integer
+          description: Number of units requested.
+          example: 5
+        notes:
+          type: string
+          description: Additional notes or instructions for the core.
+          example: RNA sequencing for experiment batch 12
+        submitted_at:
+          type: string
+          format: date-time
+          description: Timestamp when the request was submitted.
+          example: '2025-03-15T14:30:00Z'
+        principal_investigator:
+          type: string
+          description: Name of the principal investigator.
+          example: Jane Smith
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API token obtained from iLab Administration > API Clients. Contact ilab-support@agilent.com to obtain credentials.
