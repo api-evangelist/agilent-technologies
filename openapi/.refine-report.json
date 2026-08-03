@@ -1,0 +1,26 @@
+{
+  "provider": "agilent-technologies",
+  "sources": [
+    "agilent-technologies-cores-api-openapi.yml",
+    "agilent-technologies-invoices-api-openapi.yml",
+    "agilent-technologies-members-api-openapi.yml",
+    "agilent-technologies-projects-api-openapi.yml",
+    "agilent-technologies-reservations-api-openapi.yml",
+    "agilent-technologies-service-requests-api-openapi.yml",
+    "agilent-technologies-services-api-openapi.yml"
+  ],
+  "outputs": [
+    "agilent-technologies-cores-api-openapi.yml",
+    "agilent-technologies-invoices-api-openapi.yml",
+    "agilent-technologies-members-api-openapi.yml",
+    "agilent-technologies-projects-api-openapi.yml",
+    "agilent-technologies-reservations-api-openapi.yml",
+    "agilent-technologies-service-requests-api-openapi.yml",
+    "agilent-technologies-services-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

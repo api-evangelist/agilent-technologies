@@ -1,0 +1,981 @@
+openapi: 3.0.3
+info:
+  title: Agilent iLab Operations API
+  description: >-
+    The iLab API enables customers to seamlessly integrate outside applications
+    with iLab's billing and reporting modules. It leverages a RESTful
+    application architecture with HATEOAS (Hypermedia as the Engine of
+    Application State) and OAuth2 for secure access. The API supports
+    integrations with institutional financial systems such as SAP,
+    Oracle/PeopleSoft, Lawson, and Banner, as well as identity management
+    systems and LIMS.
+  version: v1
+  contact:
+    email: ilab-support@agilent.com
+    url: https://help.ilab.agilent.com
+  x-generated-from: documentation
+servers:
+  - url: https://api.ilabsolutions.com/v1
+    description: iLab API v1
+tags:
+  - name: Cores
+    description: Core facility resources — the root resource of the API
+  - name: Services
+    description: Services and price lists offered by a core facility
+  - name: Reservations
+    description: Equipment reservations and scheduling
+  - name: Service Requests
+    description: Service request submissions and management
+  - name: Members
+    description: Core facility membership and user management
+  - name: Projects
+    description: Research projects and cost accounts
+  - name: Invoices
+    description: Billing invoices and financial records
+paths:
+  /cores:
+    get:
+      operationId: listCores
+      summary: Agilent iLab List Cores
+      description: Returns a list of all core facilities accessible to the authenticated user.
+      tags:
+        - Cores
+      parameters:
+        - name: institution_id
+          in: query
+          description: Filter cores by institution identifier.
+          required: false
+          schema:
+            type: integer
+            example: 123
+        - name: page
+          in: query
+          description: Page number for paginated results.
+          required: false
+          schema:
+            type: integer
+            example: 1
+        - name: per_page
+          in: query
+          description: Number of results per page.
+          required: false
+          schema:
+            type: integer
+            example: 25
+      responses:
+        '200':
+          description: A list of core facilities.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoresListResponse'
+              examples:
+                ListCores200Example:
+                  summary: Default listCores 200 response
+                  x-microcks-default: true
+                  value:
+                    cores:
+                      - id: 5582
+                        name: Genomics Core Facility
+                        institution: Stanford University
+                        description: High-throughput genomics and sequencing services
+                        status: active
+                        url: https://api.ilabsolutions.com/v1/cores/5582
+        '401':
+          description: Unauthorized. Invalid or missing API token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}:
+    get:
+      operationId: getCore
+      summary: Agilent iLab Get Core
+      description: Returns detailed information about a specific core facility.
+      tags:
+        - Cores
+      parameters:
+        - name: core_id
+          in: path
+          description: Unique identifier for the core facility.
+          required: true
+          schema:
+            type: integer
+            example: 5582
+      responses:
+        '200':
+          description: Core facility details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Core'
+              examples:
+                GetCore200Example:
+                  summary: Default getCore 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 5582
+                    name: Genomics Core Facility
+                    institution: Stanford University
+                    description: High-throughput genomics and sequencing services
+                    status: active
+                    contact_email: genomics-core@stanford.edu
+                    url: https://api.ilabsolutions.com/v1/cores/5582
+        '404':
+          description: Core not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}/services:
+    get:
+      operationId: listServices
+      summary: Agilent iLab List Services
+      description: Returns a list of all services offered by a core facility.
+      tags:
+        - Services
+      parameters:
+        - name: core_id
+          in: path
+          description: Unique identifier for the core facility.
+          required: true
+          schema:
+            type: integer
+            example: 5582
+      responses:
+        '200':
+          description: A list of services for the core facility.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicesListResponse'
+              examples:
+                ListServices200Example:
+                  summary: Default listServices 200 response
+                  x-microcks-default: true
+                  value:
+                    services:
+                      - id: 493801
+                        name: RNA Sequencing
+                        description: Transcriptome sequencing service
+                        status: active
+                        url: https://api.ilabsolutions.com/v1/cores/5582/services/493801
+        '404':
+          description: Core not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}/services/{service_id}/prices:
+    get:
+      operationId: listServicePrices
+      summary: Agilent iLab List Service Prices
+      description: Returns all prices for a given service in a core facility.
+      tags:
+        - Services
+      parameters:
+        - name: core_id
+          in: path
+          description: Unique identifier for the core facility.
+          required: true
+          schema:
+            type: integer
+            example: 5582
+        - name: service_id
+          in: path
+          description: Unique identifier for the service.
+          required: true
+          schema:
+            type: integer
+            example: 493801
+      responses:
+        '200':
+          description: Price list for the service.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricesListResponse'
+              examples:
+                ListServicePrices200Example:
+                  summary: Default listServicePrices 200 response
+                  x-microcks-default: true
+                  value:
+                    prices:
+                      - id: 66
+                        member_type: internal
+                        amount: 150.00
+                        currency: USD
+                        unit: per_sample
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}/services/{service_id}/prices/{price_id}:
+    put:
+      operationId: updateServicePrice
+      summary: Agilent iLab Update Service Price
+      description: Updates the price for a specific pricing tier of a service.
+      tags:
+        - Services
+      parameters:
+        - name: core_id
+          in: path
+          description: Unique identifier for the core facility.
+          required: true
+          schema:
+            type: integer
+            example: 5582
+        - name: service_id
+          in: path
+          description: Unique identifier for the service.
+          required: true
+          schema:
+            type: integer
+            example: 493801
+        - name: price_id
+          in: path
+          description: Unique identifier for the price record.
+          required: true
+          schema:
+            type: integer
+            example: 66
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceUpdateRequest'
+            examples:
+              UpdateServicePriceRequestExample:
+                summary: Default updateServicePrice request
+                x-microcks-default: true
+                value:
+                  amount: 175.00
+                  currency: USD
+      responses:
+        '200':
+          description: Updated price record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Price'
+              examples:
+                UpdateServicePrice200Example:
+                  summary: Default updateServicePrice 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 66
+                    member_type: internal
+                    amount: 175.00
+                    currency: USD
+                    unit: per_sample
+        '404':
+          description: Resource not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}/service_requests:
+    get:
+      operationId: listServiceRequests
+      summary: Agilent iLab List Service Requests
+      description: Returns service requests submitted to a core facility.
+      tags:
+        - Service Requests
+      parameters:
+        - name: core_id
+          in: path
+          description: Unique identifier for the core facility.
+          required: true
+          schema:
+            type: integer
+            example: 5582
+        - name: status
+          in: query
+          description: Filter by request status (submitted, processing, completed, cancelled).
+          required: false
+          schema:
+            type: string
+            enum:
+              - submitted
+              - processing
+              - completed
+              - cancelled
+            example: submitted
+        - name: page
+          in: query
+          description: Page number for paginated results.
+          required: false
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: A list of service requests.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceRequestsListResponse'
+              examples:
+                ListServiceRequests200Example:
+                  summary: Default listServiceRequests 200 response
+                  x-microcks-default: true
+                  value:
+                    service_requests:
+                      - id: 100123
+                        service_id: 493801
+                        status: submitted
+                        submitted_at: '2025-03-15T14:30:00Z'
+                        principal_investigator: Jane Smith
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createServiceRequest
+      summary: Agilent iLab Create Service Request
+      description: Submits a new service request to a core facility.
+      tags:
+        - Service Requests
+      parameters:
+        - name: core_id
+          in: path
+          description: Unique identifier for the core facility.
+          required: true
+          schema:
+            type: integer
+            example: 5582
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequestCreateRequest'
+            examples:
+              CreateServiceRequestRequestExample:
+                summary: Default createServiceRequest request
+                x-microcks-default: true
+                value:
+                  service_id: 493801
+                  project_id: 987
+                  quantity: 5
+                  notes: RNA sequencing for experiment batch 12
+      responses:
+        '201':
+          description: Service request created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceRequest'
+              examples:
+                CreateServiceRequest201Example:
+                  summary: Default createServiceRequest 201 response
+                  x-microcks-default: true
+                  value:
+                    id: 100124
+                    service_id: 493801
+                    status: submitted
+                    submitted_at: '2026-04-19T10:00:00Z'
+                    quantity: 5
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}/reservations:
+    get:
+      operationId: listReservations
+      summary: Agilent iLab List Reservations
+      description: Returns equipment reservations for a core facility.
+      tags:
+        - Reservations
+      parameters:
+        - name: core_id
+          in: path
+          description: Unique identifier for the core facility.
+          required: true
+          schema:
+            type: integer
+            example: 5582
+        - name: start_date
+          in: query
+          description: Start date for reservation query (ISO 8601).
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-04-01'
+        - name: end_date
+          in: query
+          description: End date for reservation query (ISO 8601).
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-04-30'
+      responses:
+        '200':
+          description: A list of equipment reservations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationsListResponse'
+              examples:
+                ListReservations200Example:
+                  summary: Default listReservations 200 response
+                  x-microcks-default: true
+                  value:
+                    reservations:
+                      - id: 200456
+                        equipment_name: Illumina NovaSeq 6000
+                        start_time: '2026-04-20T09:00:00Z'
+                        end_time: '2026-04-20T17:00:00Z'
+                        user: jsmith
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}/invoices:
+    get:
+      operationId: listInvoices
+      summary: Agilent iLab List Invoices
+      description: Returns billing invoices generated by a core facility.
+      tags:
+        - Invoices
+      parameters:
+        - name: core_id
+          in: path
+          description: Unique identifier for the core facility.
+          required: true
+          schema:
+            type: integer
+            example: 5582
+        - name: status
+          in: query
+          description: Filter by invoice status (draft, sent, paid, voided).
+          required: false
+          schema:
+            type: string
+            enum:
+              - draft
+              - sent
+              - paid
+              - voided
+            example: sent
+      responses:
+        '200':
+          description: A list of invoices.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoicesListResponse'
+              examples:
+                ListInvoices200Example:
+                  summary: Default listInvoices 200 response
+                  x-microcks-default: true
+                  value:
+                    invoices:
+                      - id: 300789
+                        period: '2026-03'
+                        status: sent
+                        total_amount: 2500.00
+                        currency: USD
+                        issued_at: '2026-04-01T00:00:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}/members:
+    get:
+      operationId: listMembers
+      summary: Agilent iLab List Members
+      description: Returns members of a core facility.
+      tags:
+        - Members
+      parameters:
+        - name: core_id
+          in: path
+          description: Unique identifier for the core facility.
+          required: true
+          schema:
+            type: integer
+            example: 5582
+      responses:
+        '200':
+          description: A list of core facility members.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembersListResponse'
+              examples:
+                ListMembers200Example:
+                  summary: Default listMembers 200 response
+                  x-microcks-default: true
+                  value:
+                    members:
+                      - id: 400111
+                        name: Jane Smith
+                        email: jsmith@stanford.edu
+                        role: pi
+                        status: active
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cores/{core_id}/projects:
+    get:
+      operationId: listProjects
+      summary: Agilent iLab List Projects
+      description: Returns research projects and cost accounts associated with a core facility.
+      tags:
+        - Projects
+      parameters:
+        - name: core_id
+          in: path
+          description: Unique identifier for the core facility.
+          required: true
+          schema:
+            type: integer
+            example: 5582
+      responses:
+        '200':
+          description: A list of projects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsListResponse'
+              examples:
+                ListProjects200Example:
+                  summary: Default listProjects 200 response
+                  x-microcks-default: true
+                  value:
+                    projects:
+                      - id: 987
+                        name: Cancer Genomics Study 2026
+                        pi_name: Jane Smith
+                        account_number: '1234-5678'
+                        status: active
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        API token obtained from iLab Administration > API Clients. Contact
+        ilab-support@agilent.com to obtain credentials.
+  schemas:
+    Core:
+      type: object
+      title: Core
+      description: A core facility within an institution.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the core facility.
+          example: 5582
+        name:
+          type: string
+          description: Display name of the core facility.
+          example: Genomics Core Facility
+        institution:
+          type: string
+          description: Name of the institution operating the core.
+          example: Stanford University
+        description:
+          type: string
+          description: Description of the core facility's capabilities.
+          example: High-throughput genomics and sequencing services
+        status:
+          type: string
+          description: Operational status of the core.
+          enum:
+            - active
+            - inactive
+          example: active
+        contact_email:
+          type: string
+          format: email
+          description: Contact email for the core facility.
+          example: genomics-core@stanford.edu
+        url:
+          type: string
+          format: uri
+          description: API URL for this core resource.
+          example: https://api.ilabsolutions.com/v1/cores/5582
+    CoresListResponse:
+      type: object
+      title: Cores List Response
+      description: Paginated list of core facilities.
+      properties:
+        cores:
+          type: array
+          items:
+            $ref: '#/components/schemas/Core'
+        total:
+          type: integer
+          description: Total number of cores matching the query.
+          example: 42
+        page:
+          type: integer
+          description: Current page number.
+          example: 1
+        per_page:
+          type: integer
+          description: Number of items per page.
+          example: 25
+    Service:
+      type: object
+      title: Service
+      description: A service offered by a core facility.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the service.
+          example: 493801
+        name:
+          type: string
+          description: Name of the service.
+          example: RNA Sequencing
+        description:
+          type: string
+          description: Description of the service.
+          example: Transcriptome sequencing service
+        status:
+          type: string
+          description: Availability status of the service.
+          enum:
+            - active
+            - inactive
+          example: active
+        url:
+          type: string
+          format: uri
+          description: API URL for this service resource.
+          example: https://api.ilabsolutions.com/v1/cores/5582/services/493801
+    ServicesListResponse:
+      type: object
+      title: Services List Response
+      description: List of services for a core facility.
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
+    Price:
+      type: object
+      title: Price
+      description: A pricing tier for a service.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this price record.
+          example: 66
+        member_type:
+          type: string
+          description: Member type this price applies to (internal, external, collaborator).
+          enum:
+            - internal
+            - external
+            - collaborator
+          example: internal
+        amount:
+          type: number
+          format: double
+          description: Price amount.
+          example: 150.00
+        currency:
+          type: string
+          description: Currency code (ISO 4217).
+          example: USD
+        unit:
+          type: string
+          description: Unit of measurement for the price.
+          example: per_sample
+    PricesListResponse:
+      type: object
+      title: Prices List Response
+      description: List of prices for a service.
+      properties:
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+    PriceUpdateRequest:
+      type: object
+      title: Price Update Request
+      description: Request body for updating a service price.
+      required:
+        - amount
+      properties:
+        amount:
+          type: number
+          format: double
+          description: New price amount.
+          example: 175.00
+        currency:
+          type: string
+          description: Currency code (ISO 4217).
+          example: USD
+    ServiceRequest:
+      type: object
+      title: Service Request
+      description: A service request submitted to a core facility.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the service request.
+          example: 100123
+        service_id:
+          type: integer
+          description: Identifier of the service being requested.
+          example: 493801
+        project_id:
+          type: integer
+          description: Identifier of the research project to bill.
+          example: 987
+        status:
+          type: string
+          description: Current status of the service request.
+          enum:
+            - submitted
+            - processing
+            - completed
+            - cancelled
+          example: submitted
+        quantity:
+          type: integer
+          description: Number of units requested.
+          example: 5
+        notes:
+          type: string
+          description: Additional notes or instructions for the core.
+          example: RNA sequencing for experiment batch 12
+        submitted_at:
+          type: string
+          format: date-time
+          description: Timestamp when the request was submitted.
+          example: '2025-03-15T14:30:00Z'
+        principal_investigator:
+          type: string
+          description: Name of the principal investigator.
+          example: Jane Smith
+    ServiceRequestsListResponse:
+      type: object
+      title: Service Requests List Response
+      description: List of service requests for a core facility.
+      properties:
+        service_requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceRequest'
+    ServiceRequestCreateRequest:
+      type: object
+      title: Service Request Create Request
+      description: Request body for creating a new service request.
+      required:
+        - service_id
+      properties:
+        service_id:
+          type: integer
+          description: Identifier of the service to request.
+          example: 493801
+        project_id:
+          type: integer
+          description: Identifier of the research project to bill.
+          example: 987
+        quantity:
+          type: integer
+          description: Number of units to request.
+          example: 5
+        notes:
+          type: string
+          description: Additional notes for the core facility.
+          example: RNA sequencing for experiment batch 12
+    Reservation:
+      type: object
+      title: Reservation
+      description: An equipment reservation at a core facility.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the reservation.
+          example: 200456
+        equipment_name:
+          type: string
+          description: Name of the reserved equipment.
+          example: Illumina NovaSeq 6000
+        start_time:
+          type: string
+          format: date-time
+          description: Reservation start time (ISO 8601).
+          example: '2026-04-20T09:00:00Z'
+        end_time:
+          type: string
+          format: date-time
+          description: Reservation end time (ISO 8601).
+          example: '2026-04-20T17:00:00Z'
+        user:
+          type: string
+          description: Username of the person who made the reservation.
+          example: jsmith
+    ReservationsListResponse:
+      type: object
+      title: Reservations List Response
+      description: List of reservations for a core facility.
+      properties:
+        reservations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reservation'
+    Invoice:
+      type: object
+      title: Invoice
+      description: A billing invoice from a core facility.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the invoice.
+          example: 300789
+        period:
+          type: string
+          description: Billing period (YYYY-MM format).
+          example: '2026-03'
+        status:
+          type: string
+          description: Current invoice status.
+          enum:
+            - draft
+            - sent
+            - paid
+            - voided
+          example: sent
+        total_amount:
+          type: number
+          format: double
+          description: Total invoice amount.
+          example: 2500.00
+        currency:
+          type: string
+          description: Currency code (ISO 4217).
+          example: USD
+        issued_at:
+          type: string
+          format: date-time
+          description: Timestamp when the invoice was issued.
+          example: '2026-04-01T00:00:00Z'
+    InvoicesListResponse:
+      type: object
+      title: Invoices List Response
+      description: List of invoices for a core facility.
+      properties:
+        invoices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+    Member:
+      type: object
+      title: Member
+      description: A member of a core facility.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the member.
+          example: 400111
+        name:
+          type: string
+          description: Full name of the member.
+          example: Jane Smith
+        email:
+          type: string
+          format: email
+          description: Email address of the member.
+          example: jsmith@stanford.edu
+        role:
+          type: string
+          description: Role of the member in the core.
+          enum:
+            - pi
+            - researcher
+            - admin
+            - staff
+          example: pi
+        status:
+          type: string
+          description: Membership status.
+          enum:
+            - active
+            - inactive
+          example: active
+    MembersListResponse:
+      type: object
+      title: Members List Response
+      description: List of members for a core facility.
+      properties:
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+    Project:
+      type: object
+      title: Project
+      description: A research project or cost account.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the project.
+          example: 987
+        name:
+          type: string
+          description: Name of the research project.
+          example: Cancer Genomics Study 2026
+        pi_name:
+          type: string
+          description: Name of the principal investigator.
+          example: Jane Smith
+        account_number:
+          type: string
+          description: Financial account number for billing.
+          example: '1234-5678'
+        status:
+          type: string
+          description: Project status.
+          enum:
+            - active
+            - closed
+          example: active
+    ProjectsListResponse:
+      type: object
+      title: Projects List Response
+      description: List of research projects for a core facility.
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+    ErrorResponse:
+      type: object
+      title: Error Response
+      description: Standard error response.
+      properties:
+        error:
+          type: string
+          description: Error code or type.
+          example: not_found
+        message:
+          type: string
+          description: Human-readable error message.
+          example: The requested resource was not found.
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 404
+security:
+  - BearerAuth: []
