@@ -119,20 +119,6 @@ apis:
     url: json-structure/ilab-operations-api-service-request-structure.json
   - type: JSONLD
     url: json-ld/agilent-ilab-operations-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-cores.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-invoices.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-projects.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-reservations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-service-requests.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-services.yaml
 - aid: agilent-technologies:agilent-technologies-invoices-api
   name: agilent-technologies Invoices API
   description: Billing invoices and financial records
@@ -167,20 +153,6 @@ apis:
     url: json-structure/ilab-operations-api-service-request-structure.json
   - type: JSONLD
     url: json-ld/agilent-ilab-operations-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-cores.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-invoices.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-projects.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-reservations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-service-requests.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-services.yaml
 - aid: agilent-technologies:agilent-technologies-members-api
   name: agilent-technologies Members API
   description: Core facility membership and user management
@@ -215,20 +187,6 @@ apis:
     url: json-structure/ilab-operations-api-service-request-structure.json
   - type: JSONLD
     url: json-ld/agilent-ilab-operations-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-cores.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-invoices.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-projects.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-reservations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-service-requests.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-services.yaml
 - aid: agilent-technologies:agilent-technologies-projects-api
   name: agilent-technologies Projects API
   description: Research projects and cost accounts
@@ -263,20 +221,6 @@ apis:
     url: json-structure/ilab-operations-api-service-request-structure.json
   - type: JSONLD
     url: json-ld/agilent-ilab-operations-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-cores.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-invoices.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-projects.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-reservations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-service-requests.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-services.yaml
 - aid: agilent-technologies:agilent-technologies-reservations-api
   name: agilent-technologies Reservations API
   description: Equipment reservations and scheduling
@@ -311,20 +255,6 @@ apis:
     url: json-structure/ilab-operations-api-service-request-structure.json
   - type: JSONLD
     url: json-ld/agilent-ilab-operations-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-cores.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-invoices.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-projects.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-reservations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-service-requests.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-services.yaml
 - aid: agilent-technologies:agilent-technologies-service-requests-api
   name: agilent-technologies Service Requests API
   description: Service request submissions and management
@@ -359,20 +289,6 @@ apis:
     url: json-structure/ilab-operations-api-service-request-structure.json
   - type: JSONLD
     url: json-ld/agilent-ilab-operations-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-cores.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-invoices.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-projects.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-reservations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-service-requests.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-services.yaml
 - aid: agilent-technologies:agilent-technologies-services-api
   name: agilent-technologies Services API
   description: Services and price lists offered by a core facility
@@ -407,20 +323,6 @@ apis:
     url: json-structure/ilab-operations-api-service-request-structure.json
   - type: JSONLD
     url: json-ld/agilent-ilab-operations-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-cores.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-invoices.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-members.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-projects.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-reservations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-service-requests.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/agilent-ilab-operations-services.yaml
 common:
 - type: AgenticAccess
   url: agentic-access/agilent-technologies-agentic-access.yml
