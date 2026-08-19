@@ -1,0 +1,139 @@
+{
+  "item": [
+    {
+      "id": "00069ec8-49aa-4958-b770-24008787d65e",
+      "name": "Projects",
+      "description": {
+        "content": "Research projects and cost accounts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "35be3006-3abd-4344-9aa6-45e4101ed696",
+          "name": "Agilent iLab List Projects",
+          "request": {
+            "name": "Agilent iLab List Projects",
+            "description": {
+              "content": "Returns research projects and cost accounts associated with a core facility.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cores",
+                ":core_id",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "core_id",
+                  "description": "(Required) Unique identifier for the core facility."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "723f51fe-9ec1-4d07-bf86-568007cbbf3b",
+              "name": "A list of projects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cores",
+                    ":core_id",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "core_id",
+                      "description": "(Required) Unique identifier for the core facility."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projects\": [\n    {\n      \"id\": 987,\n      \"name\": \"Cancer Genomics Study 2026\",\n      \"pi_name\": \"Jane Smith\",\n      \"account_number\": \"1234-5678\",\n      \"status\": \"active\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ilabsolutions.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "08e2b400-7cc1-4fcb-b73d-879dc3b9c6e3",
+    "name": "Agilent iLab Operations Cores Projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting modules. It leverages a RESTful application architecture with HATEOAS (Hypermedia as the Engine of Application State) and OAuth2 for secure access. The API supports integrations with institutional financial systems such as SAP, Oracle/PeopleSoft, Lawson, and Banner, as well as identity management systems and LIMS.\n\nContact Support:\n Email: ilab-support@agilent.com",
+      "type": "text/plain"
+    }
+  }
+}

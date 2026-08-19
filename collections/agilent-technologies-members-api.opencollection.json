@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agilent iLab Operations Cores Members API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Members",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Agilent iLab List Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ilabsolutions.com/v1/cores/:core_id/members",
+            "params": [
+              {
+                "name": "core_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the core facility."
+              }
+            ]
+          },
+          "docs": "Returns members of a core facility."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

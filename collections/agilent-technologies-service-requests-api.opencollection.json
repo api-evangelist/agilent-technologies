@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agilent iLab Operations Cores Service Requests API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Service Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Agilent iLab List Service Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ilabsolutions.com/v1/cores/:core_id/service_requests",
+            "params": [
+              {
+                "name": "core_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the core facility."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by request status (submitted, processing, completed, cancelled)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              }
+            ]
+          },
+          "docs": "Returns service requests submitted to a core facility."
+        },
+        {
+          "info": {
+            "name": "Agilent iLab Create Service Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ilabsolutions.com/v1/cores/:core_id/service_requests",
+            "params": [
+              {
+                "name": "core_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the core facility."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a new service request to a core facility."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

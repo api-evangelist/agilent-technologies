@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agilent iLab Operations Cores API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cores",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Agilent iLab List Cores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ilabsolutions.com/v1/cores",
+            "params": [
+              {
+                "name": "institution_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter cores by institution identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ]
+          },
+          "docs": "Returns a list of all core facilities accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Agilent iLab Get Core",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ilabsolutions.com/v1/cores/:core_id",
+            "params": [
+              {
+                "name": "core_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the core facility."
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific core facility."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

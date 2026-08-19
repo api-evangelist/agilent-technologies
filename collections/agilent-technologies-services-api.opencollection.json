@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agilent iLab Operations Cores Services API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Agilent iLab List Services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ilabsolutions.com/v1/cores/:core_id/services",
+            "params": [
+              {
+                "name": "core_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the core facility."
+              }
+            ]
+          },
+          "docs": "Returns a list of all services offered by a core facility."
+        },
+        {
+          "info": {
+            "name": "Agilent iLab List Service Prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ilabsolutions.com/v1/cores/:core_id/services/:service_id/prices",
+            "params": [
+              {
+                "name": "core_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the core facility."
+              },
+              {
+                "name": "service_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the service."
+              }
+            ]
+          },
+          "docs": "Returns all prices for a given service in a core facility."
+        },
+        {
+          "info": {
+            "name": "Agilent iLab Update Service Price",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ilabsolutions.com/v1/cores/:core_id/services/:service_id/prices/:price_id",
+            "params": [
+              {
+                "name": "core_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the core facility."
+              },
+              {
+                "name": "service_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the service."
+              },
+              {
+                "name": "price_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the price record."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the price for a specific pricing tier of a service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agilent iLab Operations Cores Reservations API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reservations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Agilent iLab List Reservations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ilabsolutions.com/v1/cores/:core_id/reservations",
+            "params": [
+              {
+                "name": "core_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the core facility."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date for reservation query (ISO 8601)."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date for reservation query (ISO 8601)."
+              }
+            ]
+          },
+          "docs": "Returns equipment reservations for a core facility."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

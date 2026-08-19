@@ -1,0 +1,139 @@
+{
+  "item": [
+    {
+      "id": "cd4094dc-391f-4d7e-bf46-4cc1d2060815",
+      "name": "Members",
+      "description": {
+        "content": "Core facility membership and user management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f342b64-2945-4d5a-b0b7-3af4c69a0001",
+          "name": "Agilent iLab List Members",
+          "request": {
+            "name": "Agilent iLab List Members",
+            "description": {
+              "content": "Returns members of a core facility.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cores",
+                ":core_id",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "core_id",
+                  "description": "(Required) Unique identifier for the core facility."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6fedab9a-d057-4fe4-a8c1-a72b98ce4a73",
+              "name": "A list of core facility members.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cores",
+                    ":core_id",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "core_id",
+                      "description": "(Required) Unique identifier for the core facility."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"members\": [\n    {\n      \"id\": 400111,\n      \"name\": \"Jane Smith\",\n      \"email\": \"jsmith@stanford.edu\",\n      \"role\": \"pi\",\n      \"status\": \"active\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ilabsolutions.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6fadcb4b-a29b-441f-817a-2551d3ae6554",
+    "name": "Agilent iLab Operations Cores Members API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting modules. It leverages a RESTful application architecture with HATEOAS (Hypermedia as the Engine of Application State) and OAuth2 for secure access. The API supports integrations with institutional financial systems such as SAP, Oracle/PeopleSoft, Lawson, and Banner, as well as identity management systems and LIMS.\n\nContact Support:\n Email: ilab-support@agilent.com",
+      "type": "text/plain"
+    }
+  }
+}

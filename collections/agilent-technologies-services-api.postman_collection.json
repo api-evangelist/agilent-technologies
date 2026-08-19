@@ -1,0 +1,539 @@
+{
+  "item": [
+    {
+      "id": "65d274f5-3040-44e9-8f57-da6dab18ce14",
+      "name": "Services",
+      "description": {
+        "content": "Services and price lists offered by a core facility",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2efc1ca-8061-49fc-96d5-281826cef99d",
+          "name": "Agilent iLab List Services",
+          "request": {
+            "name": "Agilent iLab List Services",
+            "description": {
+              "content": "Returns a list of all services offered by a core facility.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cores",
+                ":core_id",
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "core_id",
+                  "description": "(Required) Unique identifier for the core facility."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45c57a00-9176-468f-adfb-d8ec32f1a92d",
+              "name": "A list of services for the core facility.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cores",
+                    ":core_id",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "core_id",
+                      "description": "(Required) Unique identifier for the core facility."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"services\": [\n    {\n      \"id\": 493801,\n      \"name\": \"RNA Sequencing\",\n      \"description\": \"Transcriptome sequencing service\",\n      \"status\": \"active\",\n      \"url\": \"https://api.ilabsolutions.com/v1/cores/5582/services/493801\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62eb3f72-adbb-4448-91cb-5a36bde73c22",
+              "name": "Core not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cores",
+                    ":core_id",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "core_id",
+                      "description": "(Required) Unique identifier for the core facility."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The requested resource was not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d4e6cb1-f0d9-48ec-b424-d02f7ef8e59b",
+          "name": "Agilent iLab List Service Prices",
+          "request": {
+            "name": "Agilent iLab List Service Prices",
+            "description": {
+              "content": "Returns all prices for a given service in a core facility.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cores",
+                ":core_id",
+                "services",
+                ":service_id",
+                "prices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "core_id",
+                  "description": "(Required) Unique identifier for the core facility."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "service_id",
+                  "description": "(Required) Unique identifier for the service."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "daef8f6f-55d9-4659-862f-b3c372f4df39",
+              "name": "Price list for the service.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cores",
+                    ":core_id",
+                    "services",
+                    ":service_id",
+                    "prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "core_id",
+                      "description": "(Required) Unique identifier for the core facility."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "service_id",
+                      "description": "(Required) Unique identifier for the service."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"prices\": [\n    {\n      \"id\": 66,\n      \"member_type\": \"internal\",\n      \"amount\": 150,\n      \"currency\": \"USD\",\n      \"unit\": \"per_sample\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf6fa84f-f6d2-4cf9-a1ff-d4c746c9f6f2",
+          "name": "Agilent iLab Update Service Price",
+          "request": {
+            "name": "Agilent iLab Update Service Price",
+            "description": {
+              "content": "Updates the price for a specific pricing tier of a service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cores",
+                ":core_id",
+                "services",
+                ":service_id",
+                "prices",
+                ":price_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "core_id",
+                  "description": "(Required) Unique identifier for the core facility."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "service_id",
+                  "description": "(Required) Unique identifier for the service."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "price_id",
+                  "description": "(Required) Unique identifier for the price record."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<double>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f65f8e77-0649-4471-b86b-cb23566a18a8",
+              "name": "Updated price record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cores",
+                    ":core_id",
+                    "services",
+                    ":service_id",
+                    "prices",
+                    ":price_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "core_id",
+                      "description": "(Required) Unique identifier for the core facility."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "service_id",
+                      "description": "(Required) Unique identifier for the service."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "price_id",
+                      "description": "(Required) Unique identifier for the price record."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 175,\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 66,\n  \"member_type\": \"internal\",\n  \"amount\": 175,\n  \"currency\": \"USD\",\n  \"unit\": \"per_sample\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55b6f098-1b1b-4eec-b22d-0f9eaa177ddf",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cores",
+                    ":core_id",
+                    "services",
+                    ":service_id",
+                    "prices",
+                    ":price_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "core_id",
+                      "description": "(Required) Unique identifier for the core facility."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "service_id",
+                      "description": "(Required) Unique identifier for the service."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "price_id",
+                      "description": "(Required) Unique identifier for the price record."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 175,\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The requested resource was not found.\",\n  \"status\": 404\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ilabsolutions.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6fa2c34f-1f48-474b-ba6f-f6e02ed499bd",
+    "name": "Agilent iLab Operations Cores Services API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting modules. It leverages a RESTful application architecture with HATEOAS (Hypermedia as the Engine of Application State) and OAuth2 for secure access. The API supports integrations with institutional financial systems such as SAP, Oracle/PeopleSoft, Lawson, and Banner, as well as identity management systems and LIMS.\n\nContact Support:\n Email: ilab-support@agilent.com",
+      "type": "text/plain"
+    }
+  }
+}
