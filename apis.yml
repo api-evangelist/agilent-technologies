@@ -194,6 +194,8 @@ apis:
   humanURL: https://help.ilab.agilent.com/ilab-api
   baseURL: https://api.ilabsolutions.com/v1
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
