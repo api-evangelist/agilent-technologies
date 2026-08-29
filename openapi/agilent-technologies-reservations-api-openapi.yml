@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Agilent iLab Operations Cores Reservations API
   description: The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting modules. It leverages a RESTful application architecture with HATEOAS (Hypermedia as the Engine of Application State) and OAuth2 for secure access. The API supports integrations with institutional financial systems such as SAP, Oracle/PeopleSoft, Lawson, and Banner, as well as identity management systems and LIMS.
@@ -70,15 +70,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ReservationsListResponse:
-      type: object
-      title: Reservations List Response
-      description: List of reservations for a core facility.
-      properties:
-        reservations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Reservation'
     Reservation:
       type: object
       title: Reservation
@@ -106,6 +97,15 @@ components:
           type: string
           description: Username of the person who made the reservation.
           example: jsmith
+    ReservationsListResponse:
+      type: object
+      title: Reservations List Response
+      description: List of reservations for a core facility.
+      properties:
+        reservations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reservation'
   securitySchemes:
     BearerAuth:
       type: http

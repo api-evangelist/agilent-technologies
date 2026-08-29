@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Agilent iLab Operations Cores API
   description: The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting modules. It leverages a RESTful application architecture with HATEOAS (Hypermedia as the Engine of Application State) and OAuth2 for secure access. The API supports integrations with institutional financial systems such as SAP, Oracle/PeopleSoft, Lawson, and Banner, as well as identity management systems and LIMS.
