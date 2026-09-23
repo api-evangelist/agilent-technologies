@@ -1,13 +1,7 @@
 {
   "provider": "agilent-technologies",
   "sources": [
-    "agilent-technologies-cores-api-openapi.yml",
-    "agilent-technologies-invoices-api-openapi.yml",
-    "agilent-technologies-members-api-openapi.yml",
-    "agilent-technologies-projects-api-openapi.yml",
-    "agilent-technologies-reservations-api-openapi.yml",
-    "agilent-technologies-service-requests-api-openapi.yml",
-    "agilent-technologies-services-api-openapi.yml"
+    "_ae-authored/agilent-ilab-operations-api.yaml"
   ],
   "outputs": [
     "agilent-technologies-cores-api-openapi.yml",
@@ -22,7 +16,17 @@
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "agilent-ilab-operations-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "agilent-technologies-cores-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agilent-technologies-invoices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agilent-technologies-members-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agilent-technologies-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agilent-technologies-reservations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agilent-technologies-service-requests-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agilent-technologies-services-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

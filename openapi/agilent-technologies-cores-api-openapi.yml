@@ -135,6 +135,27 @@ components:
           type: integer
           description: HTTP status code.
           example: 404
+    CoresListResponse:
+      type: object
+      title: Cores List Response
+      description: Paginated list of core facilities.
+      properties:
+        cores:
+          type: array
+          items:
+            $ref: '#/components/schemas/Core'
+        total:
+          type: integer
+          description: Total number of cores matching the query.
+          example: 42
+        page:
+          type: integer
+          description: Current page number.
+          example: 1
+        per_page:
+          type: integer
+          description: Number of items per page.
+          example: 25
     Core:
       type: object
       title: Core
@@ -173,27 +194,6 @@ components:
           format: uri
           description: API URL for this core resource.
           example: https://api.ilabsolutions.com/v1/cores/5582
-    CoresListResponse:
-      type: object
-      title: Cores List Response
-      description: Paginated list of core facilities.
-      properties:
-        cores:
-          type: array
-          items:
-            $ref: '#/components/schemas/Core'
-        total:
-          type: integer
-          description: Total number of cores matching the query.
-          example: 42
-        page:
-          type: integer
-          description: Current page number.
-          example: 1
-        per_page:
-          type: integer
-          description: Number of items per page.
-          example: 25
   securitySchemes:
     BearerAuth:
       type: http

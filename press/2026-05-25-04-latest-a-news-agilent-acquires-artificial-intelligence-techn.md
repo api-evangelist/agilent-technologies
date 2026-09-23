@@ -1,7 +1,9 @@
 ---
 title: Latest A News - Agilent Acquires Artificial Intelligence Techn...
 url: https://www.stocktitan.net/news/A/page-30.html
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Agilent Technologies" press release artificial intelligence'
 position: 4
 source: serpapi-google

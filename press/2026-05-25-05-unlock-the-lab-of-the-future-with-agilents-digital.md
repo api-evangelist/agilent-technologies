@@ -1,7 +1,9 @@
 ---
 title: Unlock the lab of the future with Agilent's Digital ...
 url: https://www.facebook.com/Agilent.Tech/posts/unlock-the-lab-of-the-future-with-agilents-digital-lab-solutions-our-open-and-co/923676106457953/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Agilent Technologies" press release artificial intelligence'
 position: 5
 source: serpapi-google

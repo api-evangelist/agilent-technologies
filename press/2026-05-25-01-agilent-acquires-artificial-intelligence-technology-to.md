@@ -1,7 +1,9 @@
 ---
 title: Agilent Acquires Artificial Intelligence Technology to ...
 url: https://www.agilent.com/about/newsroom/presrel/2022/17feb-gp22004.html?srsltid=AfmBOoopyXeP_F_3H7w_Drtjkn4uL5JTMPDo3ofoYLBhOKNGyCDZrSmP
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Agilent Technologies" press release artificial intelligence'
 position: 1
 source: serpapi-google

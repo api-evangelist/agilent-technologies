@@ -1,7 +1,9 @@
 ---
 title: Press Releases
 url: https://www.agilent.com/about/newsroom/presrel.html?cat=corporate&start=1&page=1&srsltid=AfmBOorb-8haBtodoHEkxyD5ndka2TYQoOjrCQVclI0F0lmO7BfAXJY2
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Agilent Technologies" press release artificial intelligence'
 position: 3
 source: serpapi-google
