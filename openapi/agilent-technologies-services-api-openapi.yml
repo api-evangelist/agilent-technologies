@@ -171,6 +171,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      title: Error Response
+      description: Standard error response.
+      properties:
+        error:
+          type: string
+          description: Error code or type.
+          example: not_found
+        message:
+          type: string
+          description: Human-readable error message.
+          example: The requested resource was not found.
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 404
     Price:
       type: object
       title: Price
@@ -201,32 +218,22 @@ components:
           type: string
           description: Unit of measurement for the price.
           example: per_sample
-    ServicesListResponse:
+    PriceUpdateRequest:
       type: object
-      title: Services List Response
-      description: List of services for a core facility.
+      title: Price Update Request
+      description: Request body for updating a service price.
+      required:
+      - amount
       properties:
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/Service'
-    ErrorResponse:
-      type: object
-      title: Error Response
-      description: Standard error response.
-      properties:
-        error:
+        amount:
+          type: number
+          format: double
+          description: New price amount.
+          example: 175.0
+        currency:
           type: string
-          description: Error code or type.
-          example: not_found
-        message:
-          type: string
-          description: Human-readable error message.
-          example: The requested resource was not found.
-        status:
-          type: integer
-          description: HTTP status code.
-          example: 404
+          description: Currency code (ISO 4217).
+          example: USD
     PricesListResponse:
       type: object
       title: Prices List Response
@@ -236,6 +243,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Price'
+    ServicesListResponse:
+      type: object
+      title: Services List Response
+      description: List of services for a core facility.
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
     Service:
       type: object
       title: Service
@@ -265,22 +281,6 @@ components:
           format: uri
           description: API URL for this service resource.
           example: https://api.ilabsolutions.com/v1/cores/5582/services/493801
-    PriceUpdateRequest:
-      type: object
-      title: Price Update Request
-      description: Request body for updating a service price.
-      required:
-      - amount
-      properties:
-        amount:
-          type: number
-          format: double
-          description: New price amount.
-          example: 175.0
-        currency:
-          type: string
-          description: Currency code (ISO 4217).
-          example: USD
   securitySchemes:
     BearerAuth:
       type: http

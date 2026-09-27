@@ -89,7 +89,6 @@ apis:
     workstations, automated liquid handling robots, and integrated automation systems.
   humanURL: >-
     https://www.agilent.com/cs/library/usermanuals/public/D0008025_VWorks_API_Reference_Agilent.pdf
-  baseURL: https://www.agilent.com
   tags:
   - Laboratory Automation
   - Robotics
