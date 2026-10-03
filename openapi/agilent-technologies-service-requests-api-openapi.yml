@@ -165,6 +165,15 @@ components:
           type: string
           description: Name of the principal investigator.
           example: Jane Smith
+    ServiceRequestsListResponse:
+      type: object
+      title: Service Requests List Response
+      description: List of service requests for a core facility.
+      properties:
+        service_requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceRequest'
     ServiceRequestCreateRequest:
       type: object
       title: Service Request Create Request
@@ -188,15 +197,6 @@ components:
           type: string
           description: Additional notes for the core facility.
           example: RNA sequencing for experiment batch 12
-    ServiceRequestsListResponse:
-      type: object
-      title: Service Requests List Response
-      description: List of service requests for a core facility.
-      properties:
-        service_requests:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceRequest'
   securitySchemes:
     BearerAuth:
       type: http

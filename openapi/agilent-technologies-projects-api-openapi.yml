@@ -54,6 +54,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ProjectsListResponse:
+      type: object
+      title: Projects List Response
+      description: List of research projects for a core facility.
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
     Project:
       type: object
       title: Project
@@ -82,15 +91,6 @@ components:
           - active
           - closed
           example: active
-    ProjectsListResponse:
-      type: object
-      title: Projects List Response
-      description: List of research projects for a core facility.
-      properties:
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
   securitySchemes:
     BearerAuth:
       type: http

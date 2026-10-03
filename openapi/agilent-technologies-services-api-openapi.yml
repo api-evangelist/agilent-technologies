@@ -171,6 +171,31 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ServicesListResponse:
+      type: object
+      title: Services List Response
+      description: List of services for a core facility.
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
+    PriceUpdateRequest:
+      type: object
+      title: Price Update Request
+      description: Request body for updating a service price.
+      required:
+      - amount
+      properties:
+        amount:
+          type: number
+          format: double
+          description: New price amount.
+          example: 175.0
+        currency:
+          type: string
+          description: Currency code (ISO 4217).
+          example: USD
     ErrorResponse:
       type: object
       title: Error Response
@@ -218,22 +243,6 @@ components:
           type: string
           description: Unit of measurement for the price.
           example: per_sample
-    PriceUpdateRequest:
-      type: object
-      title: Price Update Request
-      description: Request body for updating a service price.
-      required:
-      - amount
-      properties:
-        amount:
-          type: number
-          format: double
-          description: New price amount.
-          example: 175.0
-        currency:
-          type: string
-          description: Currency code (ISO 4217).
-          example: USD
     PricesListResponse:
       type: object
       title: Prices List Response
@@ -243,15 +252,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Price'
-    ServicesListResponse:
-      type: object
-      title: Services List Response
-      description: List of services for a core facility.
-      properties:
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/Service'
     Service:
       type: object
       title: Service

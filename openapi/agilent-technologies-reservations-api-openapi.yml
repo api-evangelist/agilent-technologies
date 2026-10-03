@@ -70,15 +70,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ReservationsListResponse:
-      type: object
-      title: Reservations List Response
-      description: List of reservations for a core facility.
-      properties:
-        reservations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Reservation'
     Reservation:
       type: object
       title: Reservation
@@ -106,6 +97,15 @@ components:
           type: string
           description: Username of the person who made the reservation.
           example: jsmith
+    ReservationsListResponse:
+      type: object
+      title: Reservations List Response
+      description: List of reservations for a core facility.
+      properties:
+        reservations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reservation'
   securitySchemes:
     BearerAuth:
       type: http

@@ -67,15 +67,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    InvoicesListResponse:
-      type: object
-      title: Invoices List Response
-      description: List of invoices for a core facility.
-      properties:
-        invoices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Invoice'
     Invoice:
       type: object
       title: Invoice
@@ -112,6 +103,15 @@ components:
           format: date-time
           description: Timestamp when the invoice was issued.
           example: '2026-04-01T00:00:00Z'
+    InvoicesListResponse:
+      type: object
+      title: Invoices List Response
+      description: List of invoices for a core facility.
+      properties:
+        invoices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
   securitySchemes:
     BearerAuth:
       type: http
