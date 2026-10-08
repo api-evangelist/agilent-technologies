@@ -340,6 +340,12 @@ apis:
   - type: JSONLD
     url: json-ld/agilent-ilab-operations-api-context.jsonld
 common:
+- type: Plans
+  url: plans/agilent-technologies-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/agilent-technologies-rate-limits.yml
+- type: FinOps
+  url: finops/agilent-technologies-finops.yml
 - type: AgenticAccess
   url: agentic-access/agilent-technologies-agentic-access.yml
 - type: DomainSecurity
