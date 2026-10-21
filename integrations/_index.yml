@@ -66,3 +66,215 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: agilent-technologies-fda-510-k-premarket-notifications-ivd-surgical-panels
+  label: FDA 510(k) premarket notifications (IVD / surgical panels)
+  partner_name: FDA 510(k) premarket notifications (IVD / surgical panels)
+  category: FDA-cleared IVD / surgical device
+  type: contract
+  channel: regulator-register
+  evidence: https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K163367
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: openFDA device/510k (decision_date >= 2016-01-01; panels CH HE IM MI PA TX SU OR)
+    standard: FDA 510(k) premarket clearance (IVD / surgical panels)
+    spec_file: null
+    role: fda-510k-holder
+    registered_name: Agilent Technologies, Inc.
+    matched_domain: agilent.com
+    matched_by: domain
+    detected_by: sweep-ivd-diagnostics.py
+    detected: '2026-10-21'
+    register_id: K163367
+    certified_products:
+    - product: FDA 510(k) clearance, Immunology panel
+      product_type: Immunology
+      review_panel: IM
+      lapsed: false
+      latest_decision: '2017-08-11'
+      devices_sample:
+      - GenetiSure Dx Postnatal Assay
+    signal_note: certified_products = one entry per FDA review PANEL held, never per device; openFDA carries decisions,
+      not withdrawals, so lapsed is always false
+    identity: wikidata Q393762 'Agilent Technologies' P856 http://www.agilent.com
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  status: not-a-workflow
+  arazzo: null
+- slug: agilent-technologies-fda-premarket-approval-ivd-surgical-panels
+  label: FDA premarket approval (IVD / surgical panels)
+  partner_name: FDA premarket approval (IVD / surgical panels)
+  category: FDA PMA-approved IVD / surgical device
+  type: contract
+  channel: regulator-register
+  evidence: https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm?id=P150025
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: openFDA device/pma (decision_date >= 2016-01-01; panels CH HE IM MI PA TX SU OR)
+    standard: FDA premarket approval (IVD / surgical panels)
+    spec_file: null
+    role: fda-pma-holder
+    registered_name: Agilent Technologies, Inc.
+    matched_domain: agilent.com
+    matched_by: domain
+    detected_by: sweep-ivd-diagnostics.py
+    detected: '2026-10-21'
+    register_id: P150025
+    certified_products:
+    - product: FDA PMA approval, Pathology panel
+      product_type: Pathology
+      review_panel: PA
+      lapsed: false
+      latest_decision: '2026-09-21'
+      devices_sample:
+      - EGFR pharmDx
+      - Ki-67 IHC MIB-1 pharmDx (Dako Omnis)
+      - Ki-67 IHC pharmDx
+      - MAGE-A4 IHC 1F9 pharmDx
+      - MMR IHC Panel pharmDx (Dako Omnis)
+    signal_note: certified_products = one entry per FDA review PANEL with a PMA decision (original or supplement),
+      never per device; lapsed always false (decisions, not withdrawals)
+    identity: wikidata Q393762 'Agilent Technologies' P856 http://www.agilent.com
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  status: not-a-workflow
+  arazzo: null
+- slug: agilent-technologies-fda-establishment-registration-and-device-listing-ivd-surgical-specialties
+  label: FDA establishment registration and device listing (IVD / surgical specialties)
+  partner_name: FDA establishment registration and device listing (IVD / surgical specialties)
+  category: FDA-registered device establishment
+  type: contract
+  channel: regulator-register
+  evidence: https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfRL/rl.cfm
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: openFDA device/registrationlisting (owner/operator, device listings by medical specialty)
+    standard: FDA establishment registration and device listing (21 CFR 807)
+    spec_file: null
+    role: fda-registered-owner-operator
+    registered_name: Agilent Technologies, Inc
+    matched_domain: agilent.com
+    matched_by: domain
+    detected_by: sweep-ivd-diagnostics.py
+    detected: '2026-10-21'
+    listed_specialties:
+    - Clinical Chemistry
+    - Hematology
+    - Immunology
+    - Microbiology
+    - Pathology
+    signal_note: 'REGULATED through the establishment registration: a registration is not a clearance, so no certified_products;
+      specialties are context, never counted'
+    identity: wikidata Q393762 'Agilent Technologies' P856 http://www.agilent.com
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  status: not-a-workflow
+  arazzo: null
+- slug: agilent-technologies-fda-clia-test-categorizations
+  label: FDA CLIA test categorizations
+  partner_name: FDA CLIA test categorizations
+  category: CLIA-categorized test system maker
+  type: contract
+  channel: regulator-register
+  evidence: https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfClia/search.cfm
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: FDA CLIA test categorization database (clia_detail.zip)
+    standard: FDA CLIA categorization
+    spec_file: null
+    role: clia-categorized-test-system-maker
+    registered_name: Agilent Technologies, Inc.
+    matched_domain: agilent.com
+    matched_by: domain
+    detected_by: sweep-ivd-diagnostics.py
+    detected: '2026-10-21'
+    register_id: CR250077
+    certified_products:
+    - product: FDA CLIA categorization, high complexity
+      product_type: high
+      lapsed: false
+      latest_effective: 2025/08/21
+      test_systems_sample:
+      - Agilent Technologies, Inc., Dako Omnis
+      - Agilent Technologies, Inc., Dako Omnis 110
+      - Agilent Technologies, Inc., Dako Omnis 165
+      - Agilent Technologies, Inc., Dako Omnis 165 Duo
+    signal_note: 'certified_products = one entry per CLIA COMPLEXITY held (waived / moderate / high), never per
+      test system; the database lists categorizations, not withdrawals: lapsed false'
+    identity: wikidata Q393762 'Agilent Technologies' P856 http://www.agilent.com
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  status: not-a-workflow
+  arazzo: null
+- slug: agilent-technologies-eudamed-eu-ivdr-manufacturers
+  label: EUDAMED (EU IVDR manufacturers)
+  partner_name: EUDAMED (EU IVDR manufacturers)
+  category: EU IVDR-registered manufacturer
+  type: contract
+  channel: regulator-register
+  evidence: https://ec.europa.eu/tools/eudamed/#/screen/search-eo/dc2385a9-3c67-418d-bb0d-8184d5478b7a
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: EUDAMED public API (UDI-DI data, applicable legislation IVDR; actor public information)
+    standard: EU IVDR (Regulation (EU) 2017/746) manufacturer + UDI registration
+    spec_file: null
+    role: eudamed-ivdr-manufacturer
+    registered_name: Agilent Technologies Singapore (International) Pte Ltd
+    matched_domain: agilent.com
+    matched_by: domain
+    detected_by: sweep-ivd-diagnostics.py
+    detected: '2026-10-21'
+    register_id: SG-MF-000014448
+    register_country: SG
+    actor_status: active
+    domain_from: registered e-mail domain
+    trade_names_sample:
+    - FLEX Monoclonal Mouse Anti-Cytomegalovirus, Clone CCH2 + DDG9, Ready-to-Use (Dako Omnis)
+    - FLEX Monoclonal Mouse Anti-Human Amyloid A, Clone mc1, Ready-to-Use (Dako Omnis)
+    - FLEX Monoclonal Mouse Anti-Human Beta-Catenin, Clone β-Catenin-1, Ready-to-Use (Dako Omnis)
+    - FLEX Monoclonal Mouse Anti-Human CD45, Leucocyte Common Antigen, Clones 2B11 + PD7/26, Ready-to-Use (Dako
+      Omnis)
+    - FLEX Monoclonal Mouse Anti-Human Cytokeratin 20, Clone Ks20.8, Ready-to-Use (Dako Omnis)
+    certified_products:
+    - product: EU IVDR device registration, class A
+      product_type: IVDR class A
+      lapsed: false
+      statuses:
+      - no-longer-on-the-market
+      - on-the-market
+    - product: EU IVDR device registration, class C
+      product_type: IVDR class C
+      lapsed: false
+      statuses:
+      - not-intended-for-eu-market
+      - on-the-market
+    signal_note: 'certified_products = one entry per IVDR RISK CLASS with registered devices, never per device;
+      lapsed when no device of that class is on the market. Self-filed actor registration: domain + name check +
+      country agreement, hand-reviewed'
+    other_registrations:
+    - Agilent Technologies, Inc.
+  status: not-a-workflow
+  arazzo: null
+- slug: agilent-technologies-advameddx-members
+  label: AdvaMedDx (members)
+  partner_name: AdvaMedDx (members)
+  category: Diagnostics trade body member
+  type: register
+  channel: standard-directory
+  evidence: https://www.advamed.org/advameddx/members/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: AdvaMedDx member list (advamed.org/advameddx/members)
+    standard: null
+    spec_file: null
+    role: advameddx-member
+    registered_name: Agilent Technologies
+    matched_domain: agilent.com
+    matched_by: domain
+    detected_by: sweep-ivd-diagnostics.py
+    detected: '2026-10-21'
+    listed_website: https://www.agilent.com
+    signal_note: 'self-filed paid membership: listing alone = standard-participant; hand-reviewed'
+  status: not-a-workflow
+  arazzo: null
