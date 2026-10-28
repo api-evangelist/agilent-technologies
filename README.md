@@ -1,4 +1,4 @@
-# Agilent Technologies (agilent-technologies)
+# Agilent Technologies
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,185 +66,222 @@
 
 Agilent Technologies is a global leader in life sciences, diagnostics, and applied chemical markets, providing instruments, software, services, and consumables for laboratory workflows. Agilent offers APIs for laboratory operations management including iLab for core facility billing and scheduling, SLIMS for laboratory information management, CrossLab Asset Manager for instrument management, and VWorks for laboratory automation.
 
-**URL:** [https://www.agilent.com/en](https://www.agilent.com/en)
+**Areas:** Fortune 500 · Life Sciences · Diagnostics · Laboratory · Scientific Instruments · LIMS · Laboratory Automation
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Agilent Technologies on APIs.io
 
-## Tags:
+Everything profiled for Agilent Technologies is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/agilent-technologies/](https://apis.io/providers/agilent-technologies/)** — or go straight to one of the APIs or properties below.
 
- - Life Sciences, Diagnostics, Laboratory, Scientific Instruments, LIMS, Laboratory Automation
+### APIs (10)
 
-## Timestamps
+- [Agilent SLIMS REST API](https://apis.io/apis/agilent-technologies/agilent-slims-rest-api/) — The SLIMS (Smart Laboratory Information Management System) REST API provides programmatic access to Agilent SLIMS laboratory data management platform. SLIMS…
+- [Agilent CrossLab Asset Manager API](https://apis.io/apis/agilent-technologies/agilent-crosslab-asset-manager-api/) — The CrossLab Asset Manager API provides programmatic access to Agilent's CrossLab instrument services platform, enabling management of laboratory assets,…
+- [Agilent VWorks Automation API](https://apis.io/apis/agilent-technologies/agilent-vworks-automation-api/) — The VWorks API provides a Component Object Model (COM) application programming interface for VWorks laboratory automation software (version 14.0 and later).…
+- [agilent-technologies Cores API](https://apis.io/apis/agilent-technologies/agilent-technologies-cores-api/) — Core facility resources — the root resource of the API
+- [agilent-technologies Invoices API](https://apis.io/apis/agilent-technologies/agilent-technologies-invoices-api/) — Billing invoices and financial records
+- [agilent-technologies Members API](https://apis.io/apis/agilent-technologies/agilent-technologies-members-api/) — Core facility membership and user management
+- [agilent-technologies Projects API](https://apis.io/apis/agilent-technologies/agilent-technologies-projects-api/) — Research projects and cost accounts
+- [agilent-technologies Reservations API](https://apis.io/apis/agilent-technologies/agilent-technologies-reservations-api/) — Equipment reservations and scheduling
+- [agilent-technologies Service Requests API](https://apis.io/apis/agilent-technologies/agilent-technologies-service-requests-api/) — Service request submissions and management
+- [agilent-technologies Services API](https://apis.io/apis/agilent-technologies/agilent-technologies-services-api/) — Services and price lists offered by a core facility
 
-- **Created:** 2026-03-23
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Agilent iLab Operations API
-The iLab API enables customers to seamlessly integrate outside applications with iLab's billing and reporting modules. It leverages a RESTful application architecture with HATEOAS (Hypermedia as the Engine of Application State) and OAuth2 for secure access. The API supports integrations with institutional financial systems such as SAP, Oracle/PeopleSoft, Lawson, and Banner, as well as identity management systems and LIMS.
+#### Agentic access (1)
 
-**Human URL:** [https://help.ilab.agilent.com/ilab-api](https://help.ilab.agilent.com/ilab-api)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Agilent Technologies Agentic Access](https://apis.io/agentic-access/agilent-technologies/agilent-technologies-agentic-access/)
 
- - Laboratory Operations, Billing, Core Facilities, Scheduling
+#### JSON Schema (19)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://help.ilab.agilent.com/ilab-api)
-- [Authentication](https://help.ilab.agilent.com/ilab-api)
-- [OpenAPI](openapi/agilent-ilab-operations-api.yaml)
-- [Core Schema](json-schema/ilab-operations-api-core-schema.json)
-- [Service Schema](json-schema/ilab-operations-api-service-schema.json)
-- [Service Request Schema](json-schema/ilab-operations-api-service-request-schema.json)
-- [Reservation Schema](json-schema/ilab-operations-api-reservation-schema.json)
-- [Invoice Schema](json-schema/ilab-operations-api-invoice-schema.json)
-- [Member Schema](json-schema/ilab-operations-api-member-schema.json)
-- [Project Schema](json-schema/ilab-operations-api-project-schema.json)
-- [Core Structure](json-structure/ilab-operations-api-core-structure.json)
-- [Service Request Structure](json-structure/ilab-operations-api-service-request-structure.json)
-- [JSON-LD](json-ld/agilent-ilab-operations-api-context.jsonld)
+- [Core](https://apis.io/schemas/agilent-technologies/ilab-operations-api-core/)
+- [Cores List Response](https://apis.io/schemas/agilent-technologies/ilab-operations-api-cores-list-response/)
+- [Error Response](https://apis.io/schemas/agilent-technologies/ilab-operations-api-error-response/)
+- [Invoice](https://apis.io/schemas/agilent-technologies/ilab-operations-api-invoice/)
+- [Invoices List Response](https://apis.io/schemas/agilent-technologies/ilab-operations-api-invoices-list-response/)
+- [Member](https://apis.io/schemas/agilent-technologies/ilab-operations-api-member/)
+- [Members List Response](https://apis.io/schemas/agilent-technologies/ilab-operations-api-members-list-response/)
+- [Price](https://apis.io/schemas/agilent-technologies/ilab-operations-api-price/)
+- [Price Update Request](https://apis.io/schemas/agilent-technologies/ilab-operations-api-price-update-request/)
+- [Prices List Response](https://apis.io/schemas/agilent-technologies/ilab-operations-api-prices-list-response/)
+- [Project](https://apis.io/schemas/agilent-technologies/ilab-operations-api-project/)
+- [Projects List Response](https://apis.io/schemas/agilent-technologies/ilab-operations-api-projects-list-response/)
+- [Reservation](https://apis.io/schemas/agilent-technologies/ilab-operations-api-reservation/)
+- [Reservations List Response](https://apis.io/schemas/agilent-technologies/ilab-operations-api-reservations-list-response/)
+- [Service](https://apis.io/schemas/agilent-technologies/ilab-operations-api-service/)
+- [Service Request](https://apis.io/schemas/agilent-technologies/ilab-operations-api-service-request/)
+- [Service Request Create Request](https://apis.io/schemas/agilent-technologies/ilab-operations-api-service-request-create-request/)
+- [Service Requests List Response](https://apis.io/schemas/agilent-technologies/ilab-operations-api-service-requests-list-response/)
+- [Services List Response](https://apis.io/schemas/agilent-technologies/ilab-operations-api-services-list-response/)
 
-### Agilent SLIMS REST API
-The SLIMS (Smart Laboratory Information Management System) REST API provides programmatic access to Agilent SLIMS laboratory data management platform. SLIMS features three APIs — REST, Java, and Python — enabling integration with analytical instruments, NGS workflows, biobanks, and R&D labs. The REST API is auto-documented within each SLIMS instance.
+#### JSON Structure (19)
 
-**Human URL:** [https://slims-python-api.readthedocs.io/](https://slims-python-api.readthedocs.io/)
+Data models expressed in JSON Structure.
 
-#### Tags:
+- [Ilab Operations Api Core Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-core-structure/)
+- [Ilab Operations Api Cores List Response Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-cores-list-response-structure/)
+- [Ilab Operations Api Error Response Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-error-response-structure/)
+- [Ilab Operations Api Invoice Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-invoice-structure/)
+- [Ilab Operations Api Invoices List Response Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-invoices-list-response-structure/)
+- [Ilab Operations Api Member Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-member-structure/)
+- [Ilab Operations Api Members List Response Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-members-list-response-structure/)
+- [Ilab Operations Api Price Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-price-structure/)
+- [Ilab Operations Api Price Update Request Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-price-update-request-structure/)
+- [Ilab Operations Api Prices List Response Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-prices-list-response-structure/)
+- [Ilab Operations Api Project Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-project-structure/)
+- [Ilab Operations Api Projects List Response Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-projects-list-response-structure/)
+- [Ilab Operations Api Reservation Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-reservation-structure/)
+- [Ilab Operations Api Reservations List Response Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-reservations-list-response-structure/)
+- [Ilab Operations Api Service Request Create Request Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-service-request-create-request-structure/)
+- [Ilab Operations Api Service Request Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-service-request-structure/)
+- [Ilab Operations Api Service Requests List Response Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-service-requests-list-response-structure/)
+- [Ilab Operations Api Service Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-service-structure/)
+- [Ilab Operations Api Services List Response Structure](https://apis.io/json-structure/agilent-technologies/ilab-operations-api-services-list-response-structure/)
 
- - LIMS, Laboratory Information Management, NGS, Biobank
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [SLIMS Development Manual v6.9](https://community.agilent.com/cfs-file/__key/docpreview-s/00-00-02-00-89/slims_5F00_development_5F00_manual_2D00_6.9.29.pdf)
-- [Python SDK](https://github.com/genohm/slims-python-api)
-- [Plugin API](https://github.com/genohm/slims-api)
+- [Agilent Ilab Operations Api Context](https://apis.io/jsonld/agilent-technologies/agilent-ilab-operations-api-context/)
 
-### Agilent CrossLab Asset Manager API
-The CrossLab Asset Manager API provides programmatic access to Agilent's CrossLab instrument services platform, enabling management of laboratory assets, instrument service records, maintenance scheduling, and compliance tracking across laboratory environments.
+#### Vocabulary (1)
 
-**Human URL:** [https://crosslab-api.agilent.com/](https://crosslab-api.agilent.com/)
+The provider's domain terms, defined.
 
-#### Tags:
+- [Agilent Technologies Vocabulary](https://apis.io/vocabularies/agilent-technologies/agilent-technologies-vocabulary/)
 
- - Asset Management, Instrument Services, CrossLab, Maintenance
+#### Examples (19)
 
-#### Properties
+Example requests and responses.
 
-- [Documentation](https://crosslab-api.agilent.com/)
+- [Ilab Operations Api Core Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-core-example/)
+- [Ilab Operations Api Cores List Response Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-cores-list-response-example/)
+- [Ilab Operations Api Error Response Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-error-response-example/)
+- [Ilab Operations Api Invoice Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-invoice-example/)
+- [Ilab Operations Api Invoices List Response Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-invoices-list-response-example/)
+- [Ilab Operations Api Member Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-member-example/)
+- [Ilab Operations Api Members List Response Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-members-list-response-example/)
+- [Ilab Operations Api Price Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-price-example/)
+- [Ilab Operations Api Price Update Request Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-price-update-request-example/)
+- [Ilab Operations Api Prices List Response Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-prices-list-response-example/)
+- [Ilab Operations Api Project Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-project-example/)
+- [Ilab Operations Api Projects List Response Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-projects-list-response-example/)
+- [Ilab Operations Api Reservation Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-reservation-example/)
+- [Ilab Operations Api Reservations List Response Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-reservations-list-response-example/)
+- [Ilab Operations Api Service Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-service-example/)
+- [Ilab Operations Api Service Request Create Request Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-service-request-create-request-example/)
+- [Ilab Operations Api Service Request Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-service-request-example/)
+- [Ilab Operations Api Service Requests List Response Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-service-requests-list-response-example/)
+- [Ilab Operations Api Services List Response Example](https://apis.io/examples/agilent-technologies/ilab-operations-api-services-list-response-example/)
 
-### Agilent VWorks Automation API
-The VWorks API provides a Component Object Model (COM) application programming interface for VWorks laboratory automation software (version 14.0 and later). It enables programmatic control of laboratory workstations, automated liquid handling robots, and integrated automation systems.
+#### Collections (7)
 
-**Human URL:** [https://www.agilent.com/cs/library/usermanuals/public/D0008025_VWorks_API_Reference_Agilent.pdf](https://www.agilent.com/cs/library/usermanuals/public/D0008025_VWorks_API_Reference_Agilent.pdf)
+Postman and Open Collection request collections.
 
-#### Tags:
+- [Agilent iLab Operations Cores API](https://apis.io/collections/agilent-technologies/open-agilent-technologies-cores-api/)
+- [Agilent iLab Operations Cores Invoices API](https://apis.io/collections/agilent-technologies/open-agilent-technologies-invoices-api/)
+- [Agilent iLab Operations Cores Members API](https://apis.io/collections/agilent-technologies/open-agilent-technologies-members-api/)
+- [Agilent iLab Operations Cores Projects API](https://apis.io/collections/agilent-technologies/open-agilent-technologies-projects-api/)
+- [Agilent iLab Operations Cores Reservations API](https://apis.io/collections/agilent-technologies/open-agilent-technologies-reservations-api/)
+- [Agilent iLab Operations Cores Service Requests API](https://apis.io/collections/agilent-technologies/open-agilent-technologies-service-requests-api/)
+- [Agilent iLab Operations Cores Services API](https://apis.io/collections/agilent-technologies/open-agilent-technologies-services-api/)
 
- - Laboratory Automation, Robotics, Liquid Handling, Workstation
+#### Governance rules (2)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [VWorks API Reference Guide v14.0](https://www.agilent.com/cs/library/usermanuals/public/D0008025_VWorks_API_Reference_Agilent.pdf)
+- [Agilent Technologies — jsonschema rules](https://apis.io/rules/agilent-technologies/agilent-technologies-jsonschema-spectral-rules/)
+- [Agilent Technologies API Rules](https://apis.io/rules/agilent-technologies/agilent-technologies-spectral-rules/)
 
-## Common Properties
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Agilent Technologies Authentication](https://apis.io/security/agilent-technologies/agilent-technologies-authentication/)
+- [Agilent Technologies Domain Security](https://apis.io/security/agilent-technologies/agilent-technologies-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Agilent Technologies Plans Pricing](https://apis.io/plans/agilent-technologies/agilent-technologies-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Agilent Technologies Rate Limits](https://apis.io/rate-limits/agilent-technologies/agilent-technologies-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Agilent Technologies Finops](https://apis.io/finops/agilent-technologies/agilent-technologies-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.agilent.com/en)
 - [Support](https://www.agilent.com/en/support)
-- [Community](https://community.agilent.com)
-- [GitHub Organization](https://github.com/Agilent)
-- [Terms of Service](https://www.agilent.com/en/legal)
-- [Privacy Policy](https://www.agilent.com/en/privacy-statement)
+- [Terms of service](https://www.agilent.com/en/legal)
+- [Privacy policy](https://www.agilent.com/en/privacy-statement)
+- [GitHub](https://github.com/Agilent)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| RESTful Architecture | iLab and CrossLab APIs leverage RESTful architecture with HATEOAS for discoverable resource navigation. |
-| OAuth2 Authentication | Secure access to APIs via OAuth2 with client ID and API token-based authentication. |
-| Financial System Integration | Pre-built integration support for SAP, Oracle/PeopleSoft, Lawson, and Banner financial systems. |
-| LIMS Integration | Integration with laboratory information management systems for sample tracking and results management. |
-| Instrument Data Import | Ability to import usage logs and data directly from connected laboratory instruments. |
-| Plugin Architecture | SLIMS supports custom plugin development via Java and Python APIs for workflow extension. |
-| Auto-Generated API Documentation | SLIMS REST API documentation is automatically generated from each deployed instance. |
+**Kin Score 29.4** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 28.2 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 26.3 |
 
-| Name | Description |
-|------|-------------|
-| Core Facility Billing Automation | Automate billing workflows between iLab core facilities and institutional financial systems such as SAP or Oracle. |
-| Laboratory Scheduling Integration | Integrate external scheduling applications with iLab's equipment reservation and usage tracking. |
-| Sample Lifecycle Management | Use the SLIMS API to track samples from receipt through analysis and reporting across NGS, biobank, and R&D workflows. |
-| Instrument Asset Tracking | Manage laboratory instrument service records, calibration schedules, and compliance documentation via CrossLab Asset Manager API. |
-| Automation Workflow Control | Programmatically control VWorks-driven liquid handling robots and integrated workstations for high-throughput workflows. |
-| LIMS Data Reporting | Extract and aggregate laboratory data from SLIMS for custom reporting and business intelligence integrations. |
+**Agent readiness 28.7** — agent-ready
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| SAP | Financial system integration for billing and cost accounting via iLab API. |
-| Oracle PeopleSoft | ERP integration for institutional billing and financial reporting. |
-| Lawson | Financial management system integration for laboratory billing workflows. |
-| Banner | Higher education ERP integration for core facility cost center management. |
-| LabWare LIMS | Integration between Agilent instruments and LabWare LIMS for data transfer and workflow coordination. |
-| Identity Management Systems | Integration with institutional identity providers for single sign-on and user provisioning. |
+**Regulatory alignment 19.5** — Health
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/agilent-technologies/](https://apis.io/providers/agilent-technologies/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Agilent iLab Operations API](openapi/agilent-ilab-operations-api.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Agilent Technologies: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [Core Schema](json-schema/ilab-operations-api-core-schema.json)
-- [Cores List Response Schema](json-schema/ilab-operations-api-cores-list-response-schema.json)
-- [Service Schema](json-schema/ilab-operations-api-service-schema.json)
-- [Services List Response Schema](json-schema/ilab-operations-api-services-list-response-schema.json)
-- [Price Schema](json-schema/ilab-operations-api-price-schema.json)
-- [Price Update Request Schema](json-schema/ilab-operations-api-price-update-request-schema.json)
-- [Service Request Schema](json-schema/ilab-operations-api-service-request-schema.json)
-- [Reservation Schema](json-schema/ilab-operations-api-reservation-schema.json)
-- [Invoice Schema](json-schema/ilab-operations-api-invoice-schema.json)
-- [Member Schema](json-schema/ilab-operations-api-member-schema.json)
-- [Project Schema](json-schema/ilab-operations-api-project-schema.json)
-- [Error Response Schema](json-schema/ilab-operations-api-error-response-schema.json)
-
-### JSON Structure
-
-- [Core Structure](json-structure/ilab-operations-api-core-structure.json)
-- [Service Structure](json-structure/ilab-operations-api-service-structure.json)
-- [Service Request Structure](json-structure/ilab-operations-api-service-request-structure.json)
-- [Reservation Structure](json-structure/ilab-operations-api-reservation-structure.json)
-- [Invoice Structure](json-structure/ilab-operations-api-invoice-structure.json)
-- [Member Structure](json-structure/ilab-operations-api-member-structure.json)
-- [Project Structure](json-structure/ilab-operations-api-project-structure.json)
-
-### JSON-LD
-
-- [Agilent iLab Operations API Context](json-ld/agilent-ilab-operations-api-context.jsonld)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Agilent iLab Operations API](capabilities/shared/ilab-operations-api.yaml) — 10 operations for core facility billing, scheduling, and reporting
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Laboratory Operations](capabilities/laboratory-operations.yaml) | iLab Operations API | 11 | Core Facility Manager, Research Administrator, Principal Investigator |
-
-## Vocabulary
-
-- [Agilent Technologies Vocabulary](vocabulary/agilent-technologies-vocabulary.yaml) — Unified taxonomy mapping 7 resources, 4 actions, 1 workflow, and 3 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Agilent Technologies Spectral Rules](rules/agilent-technologies-spectral-rules.yml) — 37 rules across 13 categories enforcing Agilent Technologies API conventions
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/agilent-technologies/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
