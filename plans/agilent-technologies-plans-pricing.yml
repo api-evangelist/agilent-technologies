@@ -1,0 +1,67 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Agilent Technologies
+providerId: agilent-technologies
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - Life Sciences
+  - Diagnostics
+  - Laboratory
+  - Scientific Instruments
+  - LIMS
+  - Laboratory Automation
+description: Agilent Technologies sells laboratory instruments and software (iLab Operations, SLIMS LIMS,
+  CrossLab Asset Management, VWorks lab automation). Their APIs are exposed as part of those commercial
+  software products and service contracts; Agilent does not publish a list price or self-service plan
+  catalog for the APIs themselves.
+notes: No public list pricing. Plan below reflects the standard Agilent commercial-contract model.
+sources:
+  - https://www.agilent.com/
+plans:
+  - id: agilent-technologies-product-license
+    name: Product License / Service Contract
+    type: enterprise
+    description: API access is provisioned with the underlying Agilent product (iLab subscription, SLIMS
+      LIMS license, CrossLab service contract, VWorks software license). Pricing is quoted by Agilent
+      sales and varies by product, instrument count, deployment (cloud / on-prem), and term.
+    entries:
+      - label: Agilent product / service contract
+        name: product_contract
+        type: subscription
+        metric: contract
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact Agilent sales
+        userMultiplied: false
+    elements:
+      - name: Agilent iLab Operations API (with iLab subscription)
+      - name: Agilent SLIMS REST API (with SLIMS license)
+      - name: Agilent CrossLab Asset Manager API (with CrossLab service contract)
+      - name: Agilent VWorks Automation API (with VWorks license)
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - negotiated
+  plans:
+  - name: Product License / Service Contract
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - month
