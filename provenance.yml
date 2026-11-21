@@ -128,6 +128,9 @@ artifacts:
   heartbeat/2026-11-13.yml:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-20.yml:
+    method: unknown
+    evidence: no authorship recorded
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
@@ -254,7 +257,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-06T143934.yml:
+  kin/checks-2026-11-13T214628.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -326,6 +329,9 @@ artifacts:
   kin/score-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-13T214628.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   openapi/agilent-technologies-cores-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
@@ -392,9 +398,6 @@ artifacts:
   security/agilent-technologies-domain-security.yml:
     method: unknown
     evidence: no authorship recorded
-  sla/agilent-technologies-sla.yml:
-    method: generated
-    evidence: declared in the artifact
   vocabulary/agilent-technologies-vocabulary.yaml:
     method: unknown
     evidence: no authorship recorded
